@@ -1,0 +1,14 @@
+{
+  "created_at": "2026-07-14T13:06:41",
+  "type": "portrait",
+  "aspect_ratio": "3:4",
+  "prompt": "Create one isolated original classical philosopher paper puppet. Use the supplied reference screenshot only for its premium low-poly folded-paper character style, faceted polygon density, tactile matte paper and warm soft lighting; never reproduce the screenshot's page, UI, stage, curtains, frame, text or layout. The character must be non-realistic and not resemble any specific historical person. Gray-white curled hair and full curled beard, ivory classical robe with warm beige and restrained muted-gold facets, gentle but probing inquisitive expression. Three-quarter/front view, approximately two-thirds body, centered, fully visible with generous padding. Exactly one hand raised with exactly one index finger pointing upward; both hands readable. Background must be perfectly flat, uniform pure bright chroma green #00ff00 edge-to-edge, with absolutely no gradient, texture, floor, horizon, cast shadow, contact shadow, reflection, glow, vignette, or lighting variation. No green anywhere on the subject and no green spill. No text, letters, numbers, logos, watermark, UI, report page, stage, curtains, border, frame, pedestal, props, scenery, extra people, or cropped hair, robe, elbow, hand, or fingertip.",
+  "refs": [
+    "E:\\Project\\nbti-reboot\\references\\report-design\\editorial-stage-primary.png"
+  ],
+  "provider": "zenmux",
+  "model": "openai/gpt-image-2",
+  "base_url": "https://zz1cc.cc.cd",
+  "output_path": "E:\\Project\\nbti-reboot\\public\\assets\\philosopher-source.png",
+  "response_text": ""
+}

@@ -11,23 +11,41 @@ export type ResultIdentity = {
   code: string;
   label: string;
   subtitle: string;
+  englishLabel?: string;
 };
 
 export type ReportStage = {
   headline: string;
   scene: string;
   cameoStates?: CameoState[];
+  capabilityHighlights?: StageCapabilityHighlight[];
 };
 
 export type CameoState = {
   id: string;
   label: string;
+  eyebrow?: string;
   description: string;
+  visual?: ReportImageAsset;
+};
+
+export type ReportImageAsset = {
+  src: string;
+  alt: string;
+  width: number;
+  height: number;
+  variant?: string;
+};
+
+export type StageCapabilityHighlight = {
+  dimensionId: string;
+  title: string;
 };
 
 export type ReportDimension = {
   id: string;
   label: string;
+  shortCode?: string;
   value: number;
   explanation: string;
 };

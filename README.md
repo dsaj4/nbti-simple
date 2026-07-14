@@ -16,7 +16,25 @@
 - `references/`：视觉参考，不是要逐像素复刻的 UI 规范。
 - `contracts/`：技术栈无关的业务接口骨架。
 - `fixtures/`：最小报告数据示例。
-- `src/`：按 app、domain、feature、ui 划分的空边界。
-- `tests/`：未来的验收与回归测试入口。
+- `src/`：按 app、domain、feature、ui 划分的 React 运行时与报告 UI。
+- `tests/`：Vitest 数据边界、报告交互与分享降级回归测试。
 
-当前状态：`FOUNDATION / NO RUNTIME YET`。
+当前状态：`REPORT SLICE / BROWSER VERIFIED`。
+
+## 本地运行
+
+Windows 可直接双击根目录的 `start.cmd`，脚本会在缺少依赖时自动安装，并启动开发服务器、打开浏览器。
+
+```powershell
+npm.cmd install
+npm.cmd run dev
+```
+
+## 验证
+
+```powershell
+npm.cmd test
+npm.cmd run build
+```
+
+首个纵向切片已实现 Editorial Stage 报告展示页：数据来自 `fixtures/minimal-report-case.json`，页面支持舞台切换、四维结果、响应式阅读与分享/复制反馈。复杂人物与帷幕是独立图片资产，其余信息保持真实 DOM；桌面与移动端浏览器验收、13 项测试和生产构建均通过。
