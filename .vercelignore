@@ -1,0 +1,10 @@
+node_modules/
+dist/
+.npm-cache/
+coverage/
+work/
+.codex/
+.vercel/
+.env*
+docs/positioning-exploration.md
+docs/product-form-exploration.md
