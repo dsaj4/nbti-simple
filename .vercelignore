@@ -6,5 +6,12 @@ work/
 .codex/
 .vercel/
 .env*
+KIMI.md
+references/
+docs/plans/2026-07-19-kimi-mvp-implementation-task.md
+public/assets/ui/paper-texture.png
+public/assets/ui/stage-curtain.png
+public/assets/ui/stage-curtain-ui.png
+public/assets/ui/stage-curtain-ui-v2.png
 docs/positioning-exploration.md
 docs/product-form-exploration.md
