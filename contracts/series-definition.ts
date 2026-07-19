@@ -12,6 +12,8 @@ export type SeriesDefinition = {
 
 export type Question = {
   id: string;
+  tag: string;
+  title: string;
   prompt: string;
   options: QuestionOption[];
 };
@@ -19,7 +21,20 @@ export type Question = {
 export type QuestionOption = {
   id: string;
   label: string;
+  weights: DimensionWeights;
+  action: string;
 };
+
+export type DimensionWeights = {
+  organization: WeightValue;
+  calibration: WeightValue;
+  momentum: WeightValue;
+  scope: WeightValue;
+};
+
+export type WeightValue = -2 | -1 | 0 | 1 | 2;
+
+export type DimensionKey = keyof DimensionWeights;
 
 export type ResultType = {
   id: string;

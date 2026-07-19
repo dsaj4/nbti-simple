@@ -5,6 +5,7 @@ type ShareState = "idle" | "shared" | "copied" | "manual" | "failed";
 
 type ShareButtonProps = {
   label: string;
+  shareUrl?: string;
 };
 
 function copyWithSelection(value: string): boolean {
@@ -25,20 +26,21 @@ function copyWithSelection(value: string): boolean {
   }
 }
 
-export function ShareButton({ label }: ShareButtonProps) {
+export function ShareButton({ label, shareUrl }: ShareButtonProps) {
   const [state, setState] = useState<ShareState>("idle");
   const canNativeShare = "share" in navigator && typeof navigator.share === "function";
+  const url = shareUrl ?? (typeof window !== "undefined" ? window.location.href : "");
 
   async function copyReportLink() {
     if (navigator.clipboard?.writeText) {
       try {
-        await navigator.clipboard.writeText(window.location.href);
+        await navigator.clipboard.writeText(url);
         setState("copied");
         return;
       } catch {}
     }
 
-    if (!copyWithSelection(window.location.href)) {
+    if (!copyWithSelection(url)) {
       setState("manual");
       return;
     }
@@ -49,8 +51,8 @@ export function ShareButton({ label }: ShareButtonProps) {
   async function shareReport() {
     const shareData = {
       title: `NBTI · ${label}`,
-      text: `我的 NBTI 思维风格是「${label}」`,
-      url: window.location.href,
+      text: `我的 NBTI 是「${label}」：面对复杂现场，我通常先${getShareSnippet(label)}。`,
+      url,
     };
 
     try {
@@ -92,7 +94,7 @@ export function ShareButton({ label }: ShareButtonProps) {
         ) : (
           <Copy weight="bold" aria-hidden="true" />
         )}
-        <span>{state === "copied" ? "已复制" : state === "shared" ? "已分享" : "分享"}</span>
+        <span>{state === "copied" ? "已复制" : state === "shared" ? "已分享" : "分享我的结果"}</span>
       </button>
       <span className="share-action__feedback" role="status" aria-live="polite">
         {feedback}
@@ -102,10 +104,33 @@ export function ShareButton({ label }: ShareButtonProps) {
           className="share-action__manual-link"
           aria-label="报告链接"
           readOnly
-          value={window.location.href}
+          value={url}
           onFocus={(event) => event.currentTarget.select()}
         />
       ) : null}
     </div>
   );
+}
+
+function getShareSnippet(label: string): string {
+  switch (label) {
+    case "拆题者":
+      return "把问题拆成可分别处理的部分";
+    case "连线者":
+      return "寻找信息之间的连接";
+    case "校准者":
+      return "确认判断有没有可靠依据";
+    case "读场者":
+      return "理解现场的处境和关系";
+    case "定锚者":
+      return "建立一个可执行的落点";
+    case "探路者":
+      return "走一小步换取新信息";
+    case "望塔者":
+      return "拉远看系统和长期后果";
+    case "在场者":
+      return "看见眼前具体的人";
+    default:
+      return "切换不同的起手方式";
+  }
 }

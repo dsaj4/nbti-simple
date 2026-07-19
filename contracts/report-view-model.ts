@@ -3,8 +3,10 @@ export type ReportViewModel = {
   identity: ResultIdentity;
   stage: ReportStage;
   dimensions: ReportDimension[];
-  rarity?: Rarity;
+  actions: ReportAction[];
+  evidence: ReportEvidence[];
   safetyNote: string;
+  sampleLimitation: string;
 };
 
 export type ResultIdentity = {
@@ -17,40 +19,26 @@ export type ResultIdentity = {
 export type ReportStage = {
   headline: string;
   scene: string;
-  cameoStates?: CameoState[];
-  capabilityHighlights?: StageCapabilityHighlight[];
-};
-
-export type CameoState = {
-  id: string;
-  label: string;
-  eyebrow?: string;
-  description: string;
-  visual?: ReportImageAsset;
-};
-
-export type ReportImageAsset = {
-  src: string;
-  alt: string;
-  width: number;
-  height: number;
-  variant?: string;
-};
-
-export type StageCapabilityHighlight = {
-  dimensionId: string;
-  title: string;
 };
 
 export type ReportDimension = {
   id: string;
   label: string;
   shortCode?: string;
+  leftLabel: string;
+  rightLabel: string;
   value: number;
+  positionLabel: string;
   explanation: string;
 };
 
-export type Rarity = {
-  label: string;
-  percentage?: number;
+export type ReportAction = {
+  title: string;
+  description: string;
+};
+
+export type ReportEvidence = {
+  questionTitle: string;
+  choice: string;
+  action: string;
 };
