@@ -1,5 +1,5 @@
 import { Sparkle } from "@phosphor-icons/react";
-import { useCallback, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { buildReportViewModel } from "../domain/report";
 import { nbtiSeries } from "../content/series";
 import {
@@ -49,6 +49,17 @@ function getInitialAppPhase(): AppPhase {
 
 export function App() {
   const [appPhase, setAppPhase] = useState<AppPhase>(getInitialAppPhase);
+
+  useEffect(() => {
+    const syncPhaseFromLocation = () => {
+      setAppPhase(getInitialAppPhase());
+    };
+
+    window.addEventListener("hashchange", syncPhaseFromLocation);
+    return () => {
+      window.removeEventListener("hashchange", syncPhaseFromLocation);
+    };
+  }, []);
 
   const {
     state: quizState,

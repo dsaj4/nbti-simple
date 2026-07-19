@@ -8,6 +8,7 @@ import {
   Sparkle,
   UsersThree,
 } from "@phosphor-icons/react";
+import { useEffect, useRef } from "react";
 import type { ReportViewModel } from "../../../contracts/report-view-model";
 import { ShareButton } from "./ShareButton";
 
@@ -28,6 +29,12 @@ const dimensionIcons: Record<
 };
 
 export function ReportPage({ report, shareUrl, onRetake }: ReportPageProps) {
+  const titleRef = useRef<HTMLHeadingElement>(null);
+
+  useEffect(() => {
+    titleRef.current?.focus();
+  }, []);
+
   return (
     <main className="report-page">
       <header className="report-page__header">
@@ -47,7 +54,17 @@ export function ReportPage({ report, shareUrl, onRetake }: ReportPageProps) {
           <div className="report-cover__content">
             <div className="report-cover__identity">
               <p className="report-cover__eyebrow">NBTI 思维风格报告</p>
-              <h1 id="report-identity" className="report-cover__title">
+              {report.identity.englishLabel ? (
+                <span className="report-cover__code">
+                  {report.identity.englishLabel}
+                </span>
+              ) : null}
+              <h1
+                ref={titleRef}
+                id="report-identity"
+                className="report-cover__title"
+                tabIndex={-1}
+              >
                 {report.identity.label}
               </h1>
               <p className="report-cover__subtitle">
@@ -85,7 +102,15 @@ export function ReportPage({ report, shareUrl, onRetake }: ReportPageProps) {
                         {dimension.positionLabel}
                       </span>
                     </div>
-                    <div className="report-cover__dimension-track">
+                    <div className="report-cover__dimension-ends" aria-hidden="true">
+                      <span>{dimension.leftLabel}</span>
+                      <span>{dimension.rightLabel}</span>
+                    </div>
+                    <div
+                      className="report-cover__dimension-track"
+                      role="img"
+                      aria-label={`${dimension.label}：${dimension.positionLabel}`}
+                    >
                       <span className="report-cover__dimension-marker" style={markerStyle} />
                     </div>
                   </div>
@@ -160,7 +185,15 @@ export function ReportPage({ report, shareUrl, onRetake }: ReportPageProps) {
                     {dimension.positionLabel}
                   </span>
                 </header>
-                <div className="report-dimension__track">
+                <div className="report-dimension__ends" aria-hidden="true">
+                  <span>{dimension.leftLabel}</span>
+                  <span>{dimension.rightLabel}</span>
+                </div>
+                <div
+                  className="report-dimension__track"
+                  role="img"
+                  aria-label={`${dimension.label}：${dimension.positionLabel}`}
+                >
                   <span className="report-dimension__marker" style={markerStyle} />
                 </div>
                 <p className="report-dimension__explanation">

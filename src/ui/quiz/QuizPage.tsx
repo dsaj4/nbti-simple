@@ -4,6 +4,7 @@ import {
   Check,
   Sparkle,
 } from "@phosphor-icons/react";
+import { useEffect, useRef } from "react";
 import type { Question } from "../../../contracts/series-definition";
 
 export type QuizPageProps = {
@@ -31,6 +32,11 @@ export function QuizPage({
 }: QuizPageProps) {
   const progress = ((questionIndex + 1) / totalQuestions) * 100;
   const canAdvance = selectedOption !== null;
+  const promptRef = useRef<HTMLHeadingElement>(null);
+
+  useEffect(() => {
+    promptRef.current?.focus();
+  }, [questionIndex]);
 
   return (
     <main className="quiz-page">
@@ -70,23 +76,28 @@ export function QuizPage({
         </div>
       </div>
 
-      <section className="quiz-page__card" aria-labelledby="quiz-tag">
-        <div className="quiz-page__curtains" aria-hidden="true">
-          <div className="quiz-page__curtain quiz-page__curtain--left" />
-          <div className="quiz-page__curtain quiz-page__curtain--right" />
-        </div>
-
+      <section
+        className="quiz-page__card"
+        aria-labelledby={`${question.id}-prompt`}
+      >
         <div className="quiz-page__content">
           <span id="quiz-tag" className="quiz-page__tag">
             {question.tag}
           </span>
 
-          <h1 className="quiz-page__prompt">{question.prompt}</h1>
+          <h1
+            ref={promptRef}
+            id={`${question.id}-prompt`}
+            className="quiz-page__prompt"
+            tabIndex={-1}
+          >
+            {question.prompt}
+          </h1>
 
           <div
             className="quiz-page__options"
             role="radiogroup"
-            aria-label="选项"
+            aria-labelledby={`${question.id}-prompt`}
           >
             {question.options.map((option, index) => {
               const isSelected = selectedOption === index;
@@ -138,7 +149,9 @@ export function QuizPage({
                     {isSelected ? (
                       <Check weight="bold" />
                     ) : (
-                      <span className="quiz-page__option-dot" />
+                      <span className="quiz-page__option-letter">
+                        {String.fromCharCode(65 + index)}
+                      </span>
                     )}
                   </span>
                   <span className="quiz-page__option-label">{option.label}</span>
@@ -154,10 +167,9 @@ export function QuizPage({
           type="button"
           className="button button--secondary quiz-page__nav-btn"
           onClick={onPrevious}
-          disabled={questionIndex === 0}
         >
           <CaretLeft weight="bold" aria-hidden="true" />
-          上一题
+          {questionIndex === 0 ? "返回首页" : "上一题"}
         </button>
 
         <button

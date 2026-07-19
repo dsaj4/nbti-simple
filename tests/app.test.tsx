@@ -32,7 +32,11 @@ describe("App flow", () => {
       screen.getByRole("heading", { name: /在复杂现场里/ }),
     ).toBeVisible();
     fireEvent.click(screen.getByRole("button", { name: "开始测试" }));
-    expect(screen.getByRole("radiogroup", { name: "选项" })).toBeVisible();
+    expect(
+      screen.getByRole("radiogroup", {
+        name: nbtiSeries.questions[0].prompt,
+      }),
+    ).toBeVisible();
   });
 
   it("prevents advancing without selecting an option", () => {
@@ -106,7 +110,11 @@ describe("App flow", () => {
     ).toBeVisible();
     fireEvent.click(screen.getByRole("button", { name: "开始新的测试" }));
     expect(window.location.hash).toBe("");
-    expect(screen.getByRole("radiogroup", { name: "选项" })).toBeVisible();
+    expect(
+      screen.getByRole("radiogroup", {
+        name: nbtiSeries.questions[0].prompt,
+      }),
+    ).toBeVisible();
   });
 
   it("renders a valid shared report on the first committed view", () => {
@@ -121,6 +129,20 @@ describe("App flow", () => {
     expect(
       screen.queryByRole("heading", { name: /在复杂现场里/ }),
     ).not.toBeInTheDocument();
+  });
+
+  it("syncs the page when the result hash changes in the same tab", async () => {
+    render(<App />);
+    window.location.hash = `#${encodeResult(
+      nbtiSeries.id,
+      nbtiSeries.version,
+      Array(12).fill(0),
+    )}`;
+    window.dispatchEvent(new Event("hashchange"));
+
+    await waitFor(() => {
+      expect(screen.getByRole("heading", { name: "拆题者" })).toBeVisible();
+    });
   });
 
   afterEach(() => {
