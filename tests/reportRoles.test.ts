@@ -85,7 +85,7 @@ describe("report role presentation layer", () => {
     );
   });
 
-  it("only points at files for the six generated roles", () => {
+  it("only points at files for the twelve generated roles", () => {
     const rolesWithAssets = reportRoleIds.filter(
       (roleId) => Boolean(reportRoleMap[roleId].assetSrc),
     );
@@ -97,6 +97,12 @@ describe("report role presentation layer", () => {
       "iteration-engine",
       "fixed-bearing",
       "signal-clarifier",
+      "system-maximalist",
+      "imprint-system",
+      "momentum-pump",
+      "rooted-systems-reader",
+      "probability-navigator",
+      "noise-sweeper",
     ]);
   });
 });
