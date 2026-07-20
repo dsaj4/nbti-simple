@@ -6,6 +6,7 @@ import "./ui/global.css";
 import "./ui/home/home.css";
 import "./ui/quiz/quiz.css";
 import "./ui/report/report.css";
+import "./ui/themes/mind-atlas.css";
 
 const root = document.getElementById("root");
 

@@ -46,6 +46,16 @@ export function ReportPage({ report, shareUrl, onRetake }: ReportPageProps) {
 
       <section className="report-cover" aria-labelledby="report-identity">
         <div className="report-cover__frame">
+          <div className="report-cover__backdrop-type" aria-hidden="true">
+            {report.role.englishLabel}
+          </div>
+
+          <div className="report-cover__archive-stamp" aria-hidden="true">
+            <span>FIELD NOTES</span>
+            <strong>12 / 12</strong>
+            <small>COMPLETED</small>
+          </div>
+
           <div className="report-cover__curtains" aria-hidden="true">
             <div className="report-cover__curtain report-cover__curtain--left" />
             <div className="report-cover__curtain report-cover__curtain--right" />
@@ -54,29 +64,41 @@ export function ReportPage({ report, shareUrl, onRetake }: ReportPageProps) {
           <div className="report-cover__content">
             <div className="report-cover__identity">
               <p className="report-cover__eyebrow">NBTI 思维风格报告</p>
-              {report.identity.englishLabel ? (
-                <span className="report-cover__code">
-                  {report.identity.englishLabel}
-                </span>
-              ) : null}
+              <span className="report-cover__code">
+                {report.role.englishLabel}
+              </span>
               <h1
                 ref={titleRef}
                 id="report-identity"
                 className="report-cover__title"
                 tabIndex={-1}
               >
-                {report.identity.label}
+                {report.role.label}
               </h1>
               <p className="report-cover__subtitle">
-                {report.identity.subtitle}
+                {report.role.subtitle}
               </p>
             </div>
 
             <p className="report-cover__headline">{report.stage.headline}</p>
+            <p className="report-cover__scene">{report.stage.scene}</p>
 
-            <div className="report-cover__figure" aria-hidden="true">
-              <IdentityFigure identityCode={report.identity.code} />
-            </div>
+            {report.role.assetSrc ? (
+              <div className="report-cover__figure" aria-hidden="true">
+                <img
+                  className="report-cover__role-image"
+                  src={report.role.assetSrc}
+                  alt=""
+                  loading="eager"
+                  decoding="async"
+                />
+              </div>
+            ) : (
+              <div
+                className="report-cover__figure report-cover__figure--empty"
+                aria-hidden="true"
+              />
+            )}
 
             <div className="report-cover__dimensions">
               {report.dimensions.map((dimension) => {
@@ -126,7 +148,7 @@ export function ReportPage({ report, shareUrl, onRetake }: ReportPageProps) {
       </section>
 
       <div className="report-share">
-        <ShareButton label={report.identity.label} shareUrl={shareUrl} />
+        <ShareButton label={report.role.label} shareUrl={shareUrl} />
         <p className="report-share__privacy">
           持有结果链接的人，可以在浏览器中重建这组选择和报告。
         </p>
@@ -231,120 +253,3 @@ export function ReportPage({ report, shareUrl, onRetake }: ReportPageProps) {
     </main>
   );
 }
-
-function IdentityFigure({ identityCode }: { identityCode: string }) {
-  const config = figureConfig[identityCode] ?? figureConfig["MULTI-PATH"];
-  return (
-    <svg
-      viewBox="0 0 200 200"
-      className="report-cover__svg"
-      aria-hidden="true"
-    >
-      <defs>
-        <radialGradient id="spotlight" cx="50%" cy="35%" r="50%">
-          <stop offset="0%" stopColor="rgb(255 253 245 / 95%)" />
-          <stop offset="60%" stopColor="rgb(247 237 222 / 40%)" />
-          <stop offset="100%" stopColor="transparent" />
-        </radialGradient>
-      </defs>
-      <ellipse cx="100" cy="170" rx="70" ry="14" fill="rgb(46 35 25 / 10%)" />
-      <ellipse cx="100" cy="80" rx="75" ry="75" fill="url(#spotlight)" />
-      {config.shape}
-    </svg>
-  );
-}
-
-const figureConfig: Record<string, { shape: React.ReactNode }> = {
-  DECONSTRUCTOR: {
-    shape: (
-      <g fill="none" stroke="#ba3026" strokeWidth="3" strokeLinecap="round">
-        <rect x="70" y="70" width="60" height="60" rx="4" />
-        <line x1="100" y1="70" x2="100" y2="130" />
-        <line x1="70" y1="100" x2="130" y2="100" />
-      </g>
-    ),
-  },
-  CONNECTOR: {
-    shape: (
-      <g fill="none" stroke="#169d96" strokeWidth="3" strokeLinecap="round">
-        <circle cx="70" cy="100" r="14" />
-        <circle cx="130" cy="70" r="14" />
-        <circle cx="130" cy="130" r="14" />
-        <path d="M84 100 L116 78" />
-        <path d="M84 100 L116 122" />
-      </g>
-    ),
-  },
-  CALIBRATOR: {
-    shape: (
-      <g fill="none" stroke="#a77c3d" strokeWidth="3" strokeLinecap="round">
-        <circle cx="100" cy="100" r="32" />
-        <line x1="100" y1="100" x2="100" y2="78" />
-        <line x1="100" y1="100" x2="118" y2="110" />
-        <circle cx="100" cy="100" r="5" fill="#a77c3d" />
-      </g>
-    ),
-  },
-  "CONTEXT-READER": {
-    shape: (
-      <g fill="none" stroke="#169d96" strokeWidth="3" strokeLinecap="round">
-        <path d="M70 130 Q100 70 130 130" />
-        <circle cx="100" cy="100" r="18" />
-        <circle cx="85" cy="95" r="4" fill="#169d96" />
-        <circle cx="115" cy="95" r="4" fill="#169d96" />
-        <path d="M92 110 Q100 116 108 110" />
-      </g>
-    ),
-  },
-  ANCHOR: {
-    shape: (
-      <g fill="none" stroke="#ba3026" strokeWidth="3" strokeLinecap="round">
-        <circle cx="100" cy="78" r="8" fill="#ba3026" />
-        <line x1="100" y1="86" x2="100" y2="125" />
-        <path d="M85 105 Q100 105 115 105" />
-        <path d="M90 120 Q100 132 110 120" />
-      </g>
-    ),
-  },
-  EXPLORER: {
-    shape: (
-      <g fill="none" stroke="#a77c3d" strokeWidth="3" strokeLinecap="round">
-        <path d="M70 130 L85 100 L100 115 L115 85 L130 110" />
-        <circle cx="70" cy="130" r="4" fill="#a77c3d" />
-        <circle cx="85" cy="100" r="4" fill="#a77c3d" />
-        <circle cx="100" cy="115" r="4" fill="#a77c3d" />
-        <circle cx="115" cy="85" r="4" fill="#a77c3d" />
-        <circle cx="130" cy="110" r="4" fill="#a77c3d" />
-      </g>
-    ),
-  },
-  OVERLOOKER: {
-    shape: (
-      <g fill="none" stroke="#169d96" strokeWidth="3" strokeLinecap="round">
-        <circle cx="100" cy="100" r="38" />
-        <circle cx="100" cy="100" r="24" />
-        <line x1="100" y1="62" x2="100" y2="138" />
-        <line x1="62" y1="100" x2="138" y2="100" />
-      </g>
-    ),
-  },
-  PRESENT: {
-    shape: (
-      <g fill="none" stroke="#ba3026" strokeWidth="3" strokeLinecap="round">
-        <circle cx="85" cy="95" r="16" />
-        <circle cx="115" cy="95" r="16" />
-        <path d="M85 120 Q100 135 115 120" />
-      </g>
-    ),
-  },
-  "MULTI-PATH": {
-    shape: (
-      <g fill="none" stroke="#6f6559" strokeWidth="3" strokeLinecap="round">
-        <circle cx="100" cy="100" r="28" strokeDasharray="8 6" />
-        <line x1="100" y1="72" x2="100" y2="128" />
-        <line x1="72" y1="100" x2="128" y2="100" />
-        <circle cx="100" cy="100" r="6" fill="#6f6559" />
-      </g>
-    ),
-  },
-};

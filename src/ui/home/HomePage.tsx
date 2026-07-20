@@ -20,6 +20,9 @@ export function HomePage({
           <Sparkle weight="fill" aria-hidden="true" />
           NBTI
         </span>
+        <span className="home-page__issue" aria-hidden="true">
+          MIND ATLAS · VOL. 01
+        </span>
       </header>
 
       <section className="home-page__stage" aria-labelledby="home-title">
@@ -28,7 +31,30 @@ export function HomePage({
           <div className="home-page__curtain home-page__curtain--right" />
         </div>
 
+        <div className="home-page__archive" aria-hidden="true">
+          <span className="home-page__archive-globe" />
+          <span className="home-page__archive-rule" />
+          <span className="home-page__archive-index">
+            NBTI / FIELD RECORD
+            <br />
+            ARCHIVE 01—12
+          </span>
+          <strong className="home-page__archive-word">MIND</strong>
+          <span className="home-page__archive-coordinate">
+            12 SITUATIONS · 04 AXES
+          </span>
+        </div>
+
+        <span className="home-page__archive-stamp" aria-hidden="true">
+          <b>NBTI</b>
+          <small>FIELD NOTE</small>
+        </span>
+
         <div className="home-page__content">
+          <span className="home-page__kicker" aria-hidden="true">
+            思维现场 · FIELD NOTES
+          </span>
+
           <h1 id="home-title" className="home-page__title">
             在复杂现场里，
             <br />
@@ -84,6 +110,14 @@ export function HomePage({
               </button>
             )}
           </div>
+        </div>
+
+        <div className="home-page__registry" aria-hidden="true">
+          <span>NO. 001</span>
+          <i />
+          <span>MIND ATLAS</span>
+          <i />
+          <span>NBTI · 2026</span>
         </div>
       </section>
 

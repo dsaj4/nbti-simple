@@ -60,7 +60,7 @@ describe("App flow", () => {
       fireEvent.click(nextButton);
     }
 
-    expect(screen.getByRole("heading", { name: /拆题者|连线者|校准者|读场者|定锚者|探路者|望塔者|在场者|多路者/ })).toBeVisible();
+    expect(screen.getByRole("heading", { name: /破壁人|看门狗|杠精|赛博判官|卷王|头铁|人间清醒|绝活哥|人型电脑|堆料狂魔|思想钢印|打气筒|树人|赌神|扫地僧|多路者/ })).toBeVisible();
     expect(screen.getByRole("button", { name: "重新测试" })).toBeVisible();
   });
 
@@ -125,7 +125,11 @@ describe("App flow", () => {
     )}`;
     render(<App />);
 
-    expect(screen.getByRole("heading", { name: "拆题者" })).toBeVisible();
+    const expectedRole = buildReportViewModel(
+      nbtiSeries,
+      Array(12).fill(0),
+    ).role.label;
+    expect(screen.getByRole("heading", { name: expectedRole })).toBeVisible();
     expect(
       screen.queryByRole("heading", { name: /在复杂现场里/ }),
     ).not.toBeInTheDocument();
@@ -141,7 +145,11 @@ describe("App flow", () => {
     window.dispatchEvent(new Event("hashchange"));
 
     await waitFor(() => {
-      expect(screen.getByRole("heading", { name: "拆题者" })).toBeVisible();
+      const expectedRole = buildReportViewModel(
+        nbtiSeries,
+        Array(12).fill(0),
+      ).role.label;
+      expect(screen.getByRole("heading", { name: expectedRole })).toBeVisible();
     });
   });
 
@@ -167,10 +175,32 @@ describe("ReportPage", () => {
   it("renders identity, dimensions, and safety note", () => {
     render(<ReportPage report={report} onRetake={() => {}} />);
     expect(
-      screen.getByRole("heading", { name: report.identity.label }),
+      screen.getByRole("heading", { name: report.role.label }),
     ).toBeVisible();
     expect(screen.getByText(report.safetyNote)).toBeVisible();
+    expect(screen.getByText(report.stage.scene)).toBeVisible();
     expect(screen.getAllByText(report.dimensions[0].label)[0]).toBeVisible();
+    if (report.role.assetSrc) {
+      expect(document.querySelector(`img[src="${report.role.assetSrc}"]`)).toBeInTheDocument();
+    }
+  });
+
+  it("keeps an intentional empty figure when a role asset is not ready", () => {
+    const withoutAsset = {
+      ...report,
+      role: {
+        ...report.role,
+        id: "wall-breaker",
+        label: "破壁人",
+        assetSrc: undefined,
+      },
+    };
+    const { container } = render(
+      <ReportPage report={withoutAsset} onRetake={() => {}} />,
+    );
+
+    expect(container.querySelector(".report-cover__figure--empty")).toBeInTheDocument();
+    expect(container.querySelector(".report-cover__role-image")).not.toBeInTheDocument();
   });
 
   it("copies the report link when native sharing is unavailable", async () => {

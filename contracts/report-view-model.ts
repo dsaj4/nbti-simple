@@ -1,12 +1,24 @@
 /** The only data the first report UI should need from its domain layer. */
 export type ReportViewModel = {
   identity: ResultIdentity;
+  role: ReportRole;
   stage: ReportStage;
   dimensions: ReportDimension[];
   actions: ReportAction[];
   evidence: ReportEvidence[];
   safetyNote: string;
   sampleLimitation: string;
+};
+
+export type ReportRole = {
+  id: string;
+  label: string;
+  englishLabel: string;
+  subtitle: string;
+  headline: string;
+  scene: string;
+  actions: ReportAction[];
+  assetSrc?: string;
 };
 
 export type ResultIdentity = {

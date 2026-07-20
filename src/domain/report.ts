@@ -6,6 +6,7 @@ import {
   dimensionLabels,
 } from "../content/series";
 import { identityMap } from "../content/identities";
+import { reportRoleForIdentity } from "../content/reportRoles";
 import { allDimensionKeys, normalizeScores, scoreAnswers, sumWeights } from "./scoring";
 
 export const safetyNote =
@@ -20,6 +21,10 @@ export function buildReportViewModel(
 ): ReportViewModel {
   const score = scoreAnswers(series, answers);
   const identity = identityMap[score.primaryResultId] ?? identityMap["multi-path"];
+  const role = reportRoleForIdentity(
+    score.primaryResultId,
+    score.dimensionPositions,
+  );
 
   const dimensions = allDimensionKeys.map((key) => {
     const value = score.dimensionPositions[key];
@@ -43,12 +48,22 @@ export function buildReportViewModel(
       subtitle: identity.subtitle,
       englishLabel: identity.englishLabel,
     },
+    role: {
+      id: role.id,
+      label: role.label,
+      englishLabel: role.englishLabel,
+      subtitle: role.subtitle,
+      headline: role.headline,
+      scene: role.scene,
+      actions: role.actions.length > 0 ? role.actions : identity.actions,
+      ...(role.assetSrc ? { assetSrc: role.assetSrc } : {}),
+    },
     stage: {
-      headline: identity.headline,
-      scene: identity.scene,
+      headline: role.headline,
+      scene: role.scene,
     },
     dimensions,
-    actions: identity.actions,
+    actions: role.actions.length > 0 ? role.actions : identity.actions,
     evidence: score.evidence.map((item) => ({
       questionTitle: item.questionTitle,
       choice: item.choiceLabel,

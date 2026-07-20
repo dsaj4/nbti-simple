@@ -2,28 +2,28 @@
   --font-display: "Noto Serif SC Variable", "Songti SC", "STSong", serif;
   --font-ui: ui-sans-serif, "PingFang SC", "Microsoft YaHei", "Noto Sans CJK SC", sans-serif;
   --font-numeric: Georgia, "Times New Roman", serif;
-  --paper: #f7f1e8;
-  --paper-deep: #eee2d2;
-  --paper-raised: #fffaf2;
-  --paper-glow: #fffdf7;
-  --ink: #20211f;
-  --ink-strong: #171816;
-  --ink-soft: #4f4a43;
-  --ink-muted: #6f6559;
-  --red: #ba3026;
-  --red-bright: #dc382e;
-  --red-dark: #7f221c;
-  --gold: #a77c3d;
-  --gold-soft: #c7ad82;
-  --teal: #169d96;
-  --teal-soft: #1fb3ab;
-  --line: #cbbba4;
-  --line-soft: #ddd1c1;
-  --border: #bca98e;
-  --border-soft: rgb(126 97 62 / 26%);
-  --shadow: 0 12px 24px rgb(77 50 31 / 10%), 0 2px 5px rgb(77 50 31 / 8%);
-  --shadow-sm: 0 4px 10px rgb(77 50 31 / 8%);
-  --shadow-lift: 0 28px 70px rgb(78 48 28 / 12%), 0 6px 18px rgb(78 48 28 / 8%);
+  --paper: #efe9dd;
+  --paper-deep: #e2d6c5;
+  --paper-raised: #f8f3e9;
+  --paper-glow: #fffaf2;
+  --ink: #1c1915;
+  --ink-strong: #171512;
+  --ink-soft: #4f493f;
+  --ink-muted: #6f675d;
+  --red: #6f241e;
+  --red-bright: #8e3028;
+  --red-dark: #4b1814;
+  --gold: #b38b4d;
+  --gold-soft: #c9ad7c;
+  --teal: #244a43;
+  --teal-soft: #35645a;
+  --line: #c8bca8;
+  --line-soft: #d9cfbf;
+  --border: #b7a990;
+  --border-soft: rgb(91 74 53 / 27%);
+  --shadow: 0 18px 34px rgb(47 35 24 / 12%), 0 3px 7px rgb(47 35 24 / 8%);
+  --shadow-sm: 0 6px 14px rgb(47 35 24 / 9%);
+  --shadow-lift: 0 32px 80px rgb(47 35 24 / 14%), 0 8px 20px rgb(47 35 24 / 8%);
 
   color: var(--ink);
   background: var(--paper);
@@ -62,11 +62,11 @@ body {
   min-width: 0;
   min-height: 100vh;
   background:
-    radial-gradient(circle at 50% -12%, rgb(255 255 255 / 82%), transparent 34rem),
-    radial-gradient(circle at 8% 18%, rgb(255 255 255 / 48%), transparent 24rem),
-    radial-gradient(circle at 92% 78%, rgb(187 144 91 / 10%), transparent 30rem),
-    linear-gradient(115deg, rgb(255 255 255 / 18%), transparent 46%),
-    #f7f2ea;
+    radial-gradient(circle at 50% -12%, rgb(255 255 255 / 58%), transparent 36rem),
+    radial-gradient(circle at 8% 18%, rgb(255 255 255 / 34%), transparent 24rem),
+    radial-gradient(circle at 92% 78%, rgb(111 36 30 / 6%), transparent 30rem),
+    linear-gradient(115deg, rgb(255 255 255 / 12%), transparent 46%),
+    var(--paper);
 }
 
 body::before {
@@ -74,7 +74,7 @@ body::before {
   inset: 0;
   z-index: 0;
   pointer-events: none;
-  opacity: 0.16;
+  opacity: 0.12;
   content: "";
   background-image: url("/assets/ui/paper-texture-ui.webp");
   background-size: 768px 768px;
@@ -171,7 +171,7 @@ input:focus-visible,
   gap: 10px;
   padding: 12px 28px;
   border: 2px solid transparent;
-  border-radius: 6px;
+  border-radius: 3px;
   cursor: pointer;
   font-size: 18px;
   font-weight: 700;
@@ -196,18 +196,15 @@ h3 {
 
 .button--primary {
   border-color: var(--red-dark);
-  color: #fff;
-  background:
-    linear-gradient(180deg, rgb(255 255 255 / 12%), transparent 42%),
-    linear-gradient(135deg, var(--red-bright), var(--red) 58%, var(--red-dark));
-  box-shadow: inset 0 1px 0 rgb(255 255 255 / 28%), inset 0 -1px 0 rgb(68 9 7 / 20%),
-    var(--shadow-sm);
+  color: #fffaf2;
+  background: var(--red);
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 12%), 5px 5px 0 rgb(75 24 20 / 16%);
 }
 
 .button--primary:hover:not(:disabled) {
-  filter: saturate(1.1) brightness(1.03);
-  transform: translateY(-2px) scale(1.005);
-  box-shadow: inset 0 1px 0 rgb(255 255 255 / 20%), var(--shadow);
+  filter: brightness(1.08);
+  transform: translate(-1px, -1px);
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 14%), 7px 7px 0 rgb(75 24 20 / 17%);
 }
 
 .button--primary:active:not(:disabled) {
@@ -217,8 +214,8 @@ h3 {
 .button--secondary {
   border-color: var(--border-soft);
   color: var(--ink-soft);
-  background: var(--paper-raised);
-  box-shadow: inset 0 1px 0 rgb(255 255 255 / 65%), var(--shadow-sm);
+  background: rgb(248 243 233 / 72%);
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 54%);
 }
 
 .button--secondary:hover:not(:disabled) {

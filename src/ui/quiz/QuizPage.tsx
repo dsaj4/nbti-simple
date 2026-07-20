@@ -80,6 +80,16 @@ export function QuizPage({
         className="quiz-page__card"
         aria-labelledby={`${question.id}-prompt`}
       >
+        <div className="quiz-page__folio" aria-hidden="true">
+          <span>SCENE</span>
+          <strong>{String(questionIndex + 1).padStart(2, "0")}</strong>
+        </div>
+
+        <div className="quiz-page__archive-stamp" aria-hidden="true">
+          <span>NBTI</span>
+          <strong>{String(totalQuestions).padStart(2, "0")} FIELD NOTES</strong>
+        </div>
+
         <div className="quiz-page__content">
           <span id="quiz-tag" className="quiz-page__tag">
             {question.tag}

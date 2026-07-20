@@ -91,6 +91,15 @@
   line-height: 1.7;
 }
 
+.report-cover__scene {
+  max-width: 520px;
+  margin: 12px 0 0;
+  color: var(--ink-muted);
+  font-size: 14px;
+  line-height: 1.75;
+  text-wrap: pretty;
+}
+
 .report-cover__figure {
   width: min(220px, 55vw);
   height: min(220px, 55vw);
@@ -908,9 +917,15 @@
     margin-top: 8px;
   }
 
-  .report-cover__figure {
+  .report-cover__scene {
     grid-column: 1;
     grid-row: 3;
+    margin-top: 4px;
+  }
+
+  .report-cover__figure {
+    grid-column: 1;
+    grid-row: 4;
     justify-self: center;
     margin-top: 16px;
   }
@@ -918,14 +933,14 @@
   .report-cover__dimensions {
     width: 100%;
     grid-column: 2;
-    grid-row: 1 / 4;
+    grid-row: 1 / 5;
     align-self: center;
     margin-top: 0;
   }
 
   .report-cover__limitation {
     grid-column: 1 / -1;
-    grid-row: 4;
+    grid-row: 5;
     justify-self: center;
     margin-top: 20px;
   }
