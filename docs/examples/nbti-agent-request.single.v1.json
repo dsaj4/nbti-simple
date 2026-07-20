@@ -1,0 +1,50 @@
+{
+  "$schema": "../../contracts/json-schema/nbti-agent-request.v1.schema.json",
+  "protocolVersion": "1.0.0",
+  "kind": "nbti.agent-answer.request",
+  "requestId": "req-example-q01",
+  "seriesRef": {
+    "id": "nbti-mvp",
+    "version": "1",
+    "contentDigest": "sha256:a501158f32dd00d6359f37fb15d2f99ac26b3647fa9f664d9a9a14e65ff6e0cb"
+  },
+  "mode": "single",
+  "task": "choose-one-option-per-question",
+  "responseOptions": {
+    "rationale": "omit",
+    "selectionConfidence": "omit"
+  },
+  "constraints": {
+    "chooseExactlyOne": true,
+    "scoringMetadataIncluded": false,
+    "doNotDiagnose": true,
+    "doNotAssessPersonality": true,
+    "doNotRateAbility": true,
+    "rationaleLimitedToCurrentSituation": true
+  },
+  "questions": [
+    {
+      "id": "q01",
+      "tag": "协作现场",
+      "prompt": "项目启动会上，大家对“成功标准”各执一词。作为负责人，你会先做什么？",
+      "options": [
+        {
+          "id": "q01-0",
+          "label": "把目标拆成可独立验证的几个子目标"
+        },
+        {
+          "id": "q01-1",
+          "label": "找出不同目标之间的隐藏关联，重新拼成一个整体"
+        },
+        {
+          "id": "q01-2",
+          "label": "拉起一张全局影响地图，看长期后果"
+        },
+        {
+          "id": "q01-3",
+          "label": "分别了解每个人说法背后的真实处境"
+        }
+      ]
+    }
+  ]
+}

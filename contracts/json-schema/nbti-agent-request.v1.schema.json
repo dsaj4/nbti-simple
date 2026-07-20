@@ -1,0 +1,134 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:nbti:schema:agent-request:1",
+  "title": "NBTI Agent Answer Request v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "protocolVersion",
+    "kind",
+    "requestId",
+    "seriesRef",
+    "mode",
+    "task",
+    "responseOptions",
+    "constraints",
+    "questions"
+  ],
+  "properties": {
+    "$schema": { "type": "string", "minLength": 1 },
+    "protocolVersion": { "const": "1.0.0" },
+    "kind": { "const": "nbti.agent-answer.request" },
+    "requestId": {
+      "type": "string",
+      "pattern": "^req-[A-Za-z0-9_-]{4,120}$"
+    },
+    "seriesRef": { "$ref": "#/$defs/seriesRef" },
+    "mode": { "enum": ["single", "full-batch"] },
+    "task": { "const": "choose-one-option-per-question" },
+    "responseOptions": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["rationale", "selectionConfidence"],
+      "properties": {
+        "rationale": { "enum": ["omit", "optional"] },
+        "selectionConfidence": { "enum": ["omit", "optional"] }
+      }
+    },
+    "constraints": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "chooseExactlyOne",
+        "scoringMetadataIncluded",
+        "doNotDiagnose",
+        "doNotAssessPersonality",
+        "doNotRateAbility",
+        "rationaleLimitedToCurrentSituation"
+      ],
+      "properties": {
+        "chooseExactlyOne": { "const": true },
+        "scoringMetadataIncluded": { "const": false },
+        "doNotDiagnose": { "const": true },
+        "doNotAssessPersonality": { "const": true },
+        "doNotRateAbility": { "const": true },
+        "rationaleLimitedToCurrentSituation": { "const": true }
+      }
+    },
+    "questions": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 100,
+      "items": { "$ref": "#/$defs/question" }
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "type": "object",
+        "properties": { "mode": { "const": "single" } }
+      },
+      "then": {
+        "type": "object",
+        "properties": {
+          "questions": { "type": "array", "minItems": 1, "maxItems": 1 }
+        }
+      },
+      "else": {
+        "type": "object",
+        "properties": {
+          "questions": { "type": "array", "minItems": 12, "maxItems": 12 }
+        }
+      }
+    }
+  ],
+  "$defs": {
+    "stableId": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9-]{0,63}$"
+    },
+    "seriesRef": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "version", "contentDigest"],
+      "properties": {
+        "id": { "$ref": "#/$defs/stableId" },
+        "version": { "type": "string", "pattern": "^[1-9][0-9]*$" },
+        "contentDigest": {
+          "type": "string",
+          "pattern": "^sha256:[0-9a-f]{64}$"
+        }
+      }
+    },
+    "option": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "label"],
+      "properties": {
+        "id": { "$ref": "#/$defs/stableId" },
+        "label": { "type": "string", "minLength": 1, "maxLength": 240 }
+      }
+    },
+    "question": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "tag", "prompt", "options"],
+      "properties": {
+        "id": { "$ref": "#/$defs/stableId" },
+        "tag": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 40,
+          "pattern": "^(?!.* · ).+$"
+        },
+        "prompt": { "type": "string", "minLength": 1, "maxLength": 500 },
+        "options": {
+          "type": "array",
+          "minItems": 4,
+          "maxItems": 4,
+          "items": { "$ref": "#/$defs/option" }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "$schema": "../../contracts/json-schema/nbti-agent-response.v1.schema.json",
+  "protocolVersion": "1.0.0",
+  "kind": "nbti.agent-answer.response",
+  "requestId": "req-example-q01",
+  "status": "error",
+  "seriesRef": {
+    "id": "nbti-mvp",
+    "version": "1",
+    "contentDigest": "sha256:a501158f32dd00d6359f37fb15d2f99ac26b3647fa9f664d9a9a14e65ff6e0cb"
+  },
+  "error": {
+    "code": "AGENT_REFUSED",
+    "message": "Agent 未对当前情境作出选择。",
+    "retryable": false,
+    "issues": []
+  }
+}

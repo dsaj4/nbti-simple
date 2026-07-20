@@ -1,0 +1,456 @@
+{
+  "$schema": "../../contracts/json-schema/nbti-questionnaire.v1.schema.json",
+  "schemaVersion": "1.0.0",
+  "kind": "nbti.questionnaire",
+  "id": "nbti-mvp",
+  "version": "1",
+  "contentDigest": "sha256:a501158f32dd00d6359f37fb15d2f99ac26b3647fa9f664d9a9a14e65ff6e0cb",
+  "locale": "zh-CN",
+  "title": "NBTI 思维风格测试",
+  "questionCount": 12,
+  "safety": {
+    "notDiagnosis": true,
+    "notPersonalityAssessment": true,
+    "notAbilityRating": true,
+    "statement": "结果只描述回答者在本组复杂情境中通常怎样处理信息和作出判断，不构成心理诊断、人格测评或能力评级。"
+  },
+  "dimensions": [
+    {
+      "id": "organization",
+      "label": "组织方式",
+      "left": { "id": "decompose", "label": "拆解" },
+      "right": { "id": "associate", "label": "联想" },
+      "explanation": "拆解倾向先把问题分开处理；联想倾向先寻找事物之间的连接。"
+    },
+    {
+      "id": "calibration",
+      "label": "校准依据",
+      "left": { "id": "evidence", "label": "证据" },
+      "right": { "id": "context", "label": "语境" },
+      "explanation": "证据倾向先检查可验证依据；语境倾向先理解现场条件与关系。"
+    },
+    {
+      "id": "momentum",
+      "label": "推进方式",
+      "left": { "id": "anchor", "label": "定锚" },
+      "right": { "id": "probe", "label": "试探" },
+      "explanation": "定锚倾向先形成可执行结论；试探倾向先用小步行动换取新信息。"
+    },
+    {
+      "id": "scope",
+      "label": "关注范围",
+      "left": { "id": "global", "label": "全局" },
+      "right": { "id": "proximate", "label": "近身" },
+      "explanation": "全局倾向先看系统和长期影响；近身倾向先看眼前具体的人与体验。"
+    }
+  ],
+  "questions": [
+    {
+      "id": "q01",
+      "order": 1,
+      "tag": "协作现场",
+      "title": "含糊目标分歧",
+      "prompt": "项目启动会上，大家对“成功标准”各执一词。作为负责人，你会先做什么？",
+      "options": [
+        {
+          "id": "q01-0",
+          "label": "把目标拆成可独立验证的几个子目标",
+          "action": "把混在一起的目标拆成可分别讨论的部分",
+          "weights": { "organization": -2, "calibration": 0, "momentum": 0, "scope": 0 }
+        },
+        {
+          "id": "q01-1",
+          "label": "找出不同目标之间的隐藏关联，重新拼成一个整体",
+          "action": "在看似独立的目标之间寻找联系",
+          "weights": { "organization": 2, "calibration": 0, "momentum": 0, "scope": 0 }
+        },
+        {
+          "id": "q01-2",
+          "label": "拉起一张全局影响地图，看长期后果",
+          "action": "把眼前的分歧放到长期影响里评估",
+          "weights": { "organization": 0, "calibration": 0, "momentum": 0, "scope": -2 }
+        },
+        {
+          "id": "q01-3",
+          "label": "分别了解每个人说法背后的真实处境",
+          "action": "先倾听不同人的具体处境",
+          "weights": { "organization": 0, "calibration": 0, "momentum": 0, "scope": 2 }
+        }
+      ]
+    },
+    {
+      "id": "q02",
+      "order": 2,
+      "tag": "信息现场",
+      "title": "新信息冲突",
+      "prompt": "执行到一半，新数据证明原计划的一个前提不成立。你会先做什么？",
+      "options": [
+        {
+          "id": "q02-0",
+          "label": "定位是哪条证据推翻了原计划",
+          "action": "先找出推翻计划的关键证据",
+          "weights": { "organization": 0, "calibration": -2, "momentum": 0, "scope": 0 }
+        },
+        {
+          "id": "q02-1",
+          "label": "重新理解这条数据产生的现场条件",
+          "action": "先理解数据产生的具体语境",
+          "weights": { "organization": 0, "calibration": 2, "momentum": 0, "scope": 0 }
+        },
+        {
+          "id": "q02-2",
+          "label": "先做一个最小调整，看现场反应",
+          "action": "用可逆的小动作测试新方向",
+          "weights": { "organization": 0, "calibration": 0, "momentum": 2, "scope": 0 }
+        },
+        {
+          "id": "q02-3",
+          "label": "先按原结论执行，把新数据留到会后核实",
+          "action": "先保留既有结论，再继续推进",
+          "weights": { "organization": 0, "calibration": 0, "momentum": -2, "scope": 0 }
+        }
+      ]
+    },
+    {
+      "id": "q03",
+      "order": 3,
+      "tag": "信息现场",
+      "title": "证据不完整",
+      "prompt": "截止时间只剩两小时，一条关键数据仍互相矛盾。团队已经开始等待你的决定。你会先做什么？",
+      "options": [
+        {
+          "id": "q03-0",
+          "label": "把矛盾拆成可以分别核对的部分",
+          "action": "把互相矛盾的数据拆成可逐项核对的部分",
+          "weights": { "organization": -2, "calibration": 0, "momentum": 0, "scope": 0 }
+        },
+        {
+          "id": "q03-1",
+          "label": "找一个能暂时统合两条数据的解释",
+          "action": "把两条矛盾数据放进一个更大的解释里",
+          "weights": { "organization": 2, "calibration": 0, "momentum": 0, "scope": 0 }
+        },
+        {
+          "id": "q03-2",
+          "label": "先确认哪条证据最可能改变结论",
+          "action": "优先验证最能影响结论的证据",
+          "weights": { "organization": 0, "calibration": -2, "momentum": 0, "scope": 0 }
+        },
+        {
+          "id": "q03-3",
+          "label": "先问清不同人会承担什么后果",
+          "action": "先了解决定落地后各方的真实处境",
+          "weights": { "organization": 0, "calibration": 2, "momentum": 0, "scope": 0 }
+        }
+      ]
+    },
+    {
+      "id": "q04",
+      "order": 4,
+      "tag": "协作现场",
+      "title": "多方利益冲突",
+      "prompt": "两个部门的需求互相冲突，预算只能满足一方。你会先做什么？",
+      "options": [
+        {
+          "id": "q04-0",
+          "label": "先定一个优先级规则，按规则执行",
+          "action": "先用规则给出一个明确落点",
+          "weights": { "organization": 0, "calibration": 0, "momentum": -2, "scope": 0 }
+        },
+        {
+          "id": "q04-1",
+          "label": "先小规模试行一个兼顾方案",
+          "action": "用一个小试验验证兼顾方案是否可行",
+          "weights": { "organization": 0, "calibration": 0, "momentum": 2, "scope": 0 }
+        },
+        {
+          "id": "q04-2",
+          "label": "评估对整体业务链路的长期影响",
+          "action": "把冲突放到整体业务里看长期后果",
+          "weights": { "organization": 0, "calibration": 0, "momentum": 0, "scope": -2 }
+        },
+        {
+          "id": "q04-3",
+          "label": "分别了解两个部门的真实处境",
+          "action": "先了解两个部门各自的真实处境",
+          "weights": { "organization": 0, "calibration": 0, "momentum": 0, "scope": 2 }
+        }
+      ]
+    },
+    {
+      "id": "q05",
+      "order": 5,
+      "tag": "信息现场",
+      "title": "指标异常",
+      "prompt": "监控面板里一个核心指标突然跳水，原因不明。你会先做什么？",
+      "options": [
+        {
+          "id": "q05-0",
+          "label": "检查最近变更，找可验证的触发点",
+          "action": "寻找能解释异常的客观触发点",
+          "weights": { "organization": 0, "calibration": -2, "momentum": 0, "scope": 0 }
+        },
+        {
+          "id": "q05-1",
+          "label": "先打电话问一线同事现场发生了什么",
+          "action": "先从一线同事那里了解现场情况",
+          "weights": { "organization": 0, "calibration": 2, "momentum": 0, "scope": 0 }
+        },
+        {
+          "id": "q05-2",
+          "label": "评估如果持续异常，整体目标会受多大影响",
+          "action": "把指标异常放到整体目标里评估",
+          "weights": { "organization": 0, "calibration": 0, "momentum": 0, "scope": -2 }
+        },
+        {
+          "id": "q05-3",
+          "label": "定位指标异常影响到的具体用户场景",
+          "action": "先找到被影响的具体用户场景",
+          "weights": { "organization": 0, "calibration": 0, "momentum": 0, "scope": 2 }
+        }
+      ]
+    },
+    {
+      "id": "q06",
+      "order": 6,
+      "tag": "关系现场",
+      "title": "冒险想法",
+      "prompt": "朋友兴奋地向你介绍一个看起来冒险的计划，并想拉你一起做。你会先做什么？",
+      "options": [
+        {
+          "id": "q06-0",
+          "label": "请他列出可能失败的具体环节",
+          "action": "把计划拆成可能出问题的具体环节",
+          "weights": { "organization": -2, "calibration": 0, "momentum": 0, "scope": 0 }
+        },
+        {
+          "id": "q06-1",
+          "label": "找出这个想法和他过往经历的连接",
+          "action": "把他的新想法和过往经历联系起来",
+          "weights": { "organization": 2, "calibration": 0, "momentum": 0, "scope": 0 }
+        },
+        {
+          "id": "q06-2",
+          "label": "建议先投入一小段时间试水",
+          "action": "用一段小时间验证想法是否可行",
+          "weights": { "organization": 0, "calibration": 0, "momentum": 2, "scope": 0 }
+        },
+        {
+          "id": "q06-3",
+          "label": "先明确表态支持或反对，再慢慢评估",
+          "action": "先给出一个明确立场再继续讨论",
+          "weights": { "organization": 0, "calibration": 0, "momentum": -2, "scope": 0 }
+        }
+      ]
+    },
+    {
+      "id": "q07",
+      "order": 7,
+      "tag": "协作现场",
+      "title": "观点对撞",
+      "prompt": "一场重要讨论变成互相反驳，没有人能推进。你会先做什么？",
+      "options": [
+        {
+          "id": "q07-0",
+          "label": "把各方观点整理成可对比的条目",
+          "action": "把互相反驳的观点拆成可对比的条目",
+          "weights": { "organization": -2, "calibration": 0, "momentum": 0, "scope": 0 }
+        },
+        {
+          "id": "q07-1",
+          "label": "寻找不同观点之间的共同前提",
+          "action": "在分歧背后寻找共同的前提",
+          "weights": { "organization": 2, "calibration": 0, "momentum": 0, "scope": 0 }
+        },
+        {
+          "id": "q07-2",
+          "label": "把讨论放到整体目标里看优先级",
+          "action": "把争论放到整体目标里看优先级",
+          "weights": { "organization": 0, "calibration": 0, "momentum": 0, "scope": -2 }
+        },
+        {
+          "id": "q07-3",
+          "label": "停下来，分别听每个人的情绪和立场",
+          "action": "先停下来倾听每个人的情绪和立场",
+          "weights": { "organization": 0, "calibration": 0, "momentum": 0, "scope": 2 }
+        }
+      ]
+    },
+    {
+      "id": "q08",
+      "order": 8,
+      "tag": "决策现场",
+      "title": "修局部还是重做",
+      "prompt": "老问题反复出现，有人主张彻底重做系统，有人建议先修局部。你会先做什么？",
+      "options": [
+        {
+          "id": "q08-0",
+          "label": "收集历史上同类决策的真实数据",
+          "action": "用历史数据判断同类决策的结果",
+          "weights": { "organization": 0, "calibration": -2, "momentum": 0, "scope": 0 }
+        },
+        {
+          "id": "q08-1",
+          "label": "了解当前团队能承受的改动范围",
+          "action": "先了解团队当下的实际承受范围",
+          "weights": { "organization": 0, "calibration": 2, "momentum": 0, "scope": 0 }
+        },
+        {
+          "id": "q08-2",
+          "label": "先选一个方向推进，避免无限讨论",
+          "action": "先选定一个方向让讨论落地",
+          "weights": { "organization": 0, "calibration": 0, "momentum": -2, "scope": 0 }
+        },
+        {
+          "id": "q08-3",
+          "label": "先找一个最小切口验证重做假设",
+          "action": "用最小切口验证重做是否值得",
+          "weights": { "organization": 0, "calibration": 0, "momentum": 2, "scope": 0 }
+        }
+      ]
+    },
+    {
+      "id": "q09",
+      "order": 9,
+      "tag": "表达现场",
+      "title": "公开表达",
+      "prompt": "你要在公开场合说一件复杂的事，担心被断章取义。你会先做什么？",
+      "options": [
+        {
+          "id": "q09-0",
+          "label": "把论点拆成几个不易误解的小命题",
+          "action": "把复杂论点拆成可独立理解的小命题",
+          "weights": { "organization": -2, "calibration": 0, "momentum": 0, "scope": 0 }
+        },
+        {
+          "id": "q09-1",
+          "label": "先设计一个能统合不同关切的说法",
+          "action": "把不同关切编织成一个统一说法",
+          "weights": { "organization": 2, "calibration": 0, "momentum": 0, "scope": 0 }
+        },
+        {
+          "id": "q09-2",
+          "label": "评估这次表达在全局叙事中的位置",
+          "action": "把表达放到整体叙事里看影响",
+          "weights": { "organization": 0, "calibration": 0, "momentum": 0, "scope": -2 }
+        },
+        {
+          "id": "q09-3",
+          "label": "先找几位目标听众试读，收集反应",
+          "action": "先让具体听众试读并收集反应",
+          "weights": { "organization": 0, "calibration": 0, "momentum": 0, "scope": 2 }
+        }
+      ]
+    },
+    {
+      "id": "q10",
+      "order": 10,
+      "tag": "决策现场",
+      "title": "试验还是投入",
+      "prompt": "团队有两个方案：小范围试验稳妥但慢，一次性投入快但风险高。你会先做什么？",
+      "options": [
+        {
+          "id": "q10-0",
+          "label": "把两种路径的关键假设列出来对比",
+          "action": "把两个方案的关键假设逐一对比",
+          "weights": { "organization": 0, "calibration": -2, "momentum": 0, "scope": 0 }
+        },
+        {
+          "id": "q10-1",
+          "label": "判断当前最缺的是信息还是决心",
+          "action": "先判断现场缺的是信息还是决心",
+          "weights": { "organization": 0, "calibration": 2, "momentum": 0, "scope": 0 }
+        },
+        {
+          "id": "q10-2",
+          "label": "建议切出一个可回滚的小试验",
+          "action": "用可回滚的小试验降低不确定性",
+          "weights": { "organization": 0, "calibration": 0, "momentum": 2, "scope": 0 }
+        },
+        {
+          "id": "q10-3",
+          "label": "直接拍板一个方向，避免消耗士气",
+          "action": "直接给出明确方向结束犹豫",
+          "weights": { "organization": 0, "calibration": 0, "momentum": -2, "scope": 0 }
+        }
+      ]
+    },
+    {
+      "id": "q11",
+      "order": 11,
+      "tag": "规则现场",
+      "title": "规则冲突",
+      "prompt": "现场情况明显超出既有规则，但严格按规则会伤害具体的人。你会先做什么？",
+      "options": [
+        {
+          "id": "q11-0",
+          "label": "把规则的适用边界拆成不同情形",
+          "action": "把规则拆成可适用的不同情形",
+          "weights": { "organization": -2, "calibration": 0, "momentum": 0, "scope": 0 }
+        },
+        {
+          "id": "q11-1",
+          "label": "寻找一个能同时覆盖规则和例外的解释框架",
+          "action": "寻找一个能同时容纳规则和例外的框架",
+          "weights": { "organization": 2, "calibration": 0, "momentum": 0, "scope": 0 }
+        },
+        {
+          "id": "q11-2",
+          "label": "找出规则原本想保护的目标",
+          "action": "追溯规则原本想保护的依据",
+          "weights": { "organization": 0, "calibration": -2, "momentum": 0, "scope": 0 }
+        },
+        {
+          "id": "q11-3",
+          "label": "先和当事人聊清楚实际处境",
+          "action": "先了解当事人的具体处境",
+          "weights": { "organization": 0, "calibration": 2, "momentum": 0, "scope": 0 }
+        }
+      ]
+    },
+    {
+      "id": "q12",
+      "order": 12,
+      "tag": "决策现场",
+      "title": "没有把握",
+      "prompt": "几个方案看起来都可行，但没有一个有十足把握。你会先做什么？",
+      "options": [
+        {
+          "id": "q12-0",
+          "label": "先选一个方向推进，边做边看",
+          "action": "先选定一个方向推进，在实践中调整",
+          "weights": { "organization": 0, "calibration": 0, "momentum": -2, "scope": 0 }
+        },
+        {
+          "id": "q12-1",
+          "label": "找出能最快验证核心假设的动作",
+          "action": "用最快动作验证关键假设",
+          "weights": { "organization": 0, "calibration": 0, "momentum": 2, "scope": 0 }
+        },
+        {
+          "id": "q12-2",
+          "label": "评估每个方案对整体路径的长期影响",
+          "action": "把各方案放到整体路径里看长期影响",
+          "weights": { "organization": 0, "calibration": 0, "momentum": 0, "scope": -2 }
+        },
+        {
+          "id": "q12-3",
+          "label": "问问现场最受影响的人更怕哪一种结果",
+          "action": "先了解最受影响的人的真实顾虑",
+          "weights": { "organization": 0, "calibration": 0, "momentum": 0, "scope": 2 }
+        }
+      ]
+    }
+  ],
+  "resultTypes": [
+    { "id": "deconstructor", "label": "拆题者", "shortLabel": "拆解" },
+    { "id": "connector", "label": "连线者", "shortLabel": "联想" },
+    { "id": "calibrator", "label": "校准者", "shortLabel": "证据" },
+    { "id": "context-reader", "label": "读场者", "shortLabel": "语境" },
+    { "id": "anchor", "label": "定锚者", "shortLabel": "定锚" },
+    { "id": "explorer", "label": "探路者", "shortLabel": "试探" },
+    { "id": "overlooker", "label": "望塔者", "shortLabel": "全局" },
+    { "id": "present", "label": "在场者", "shortLabel": "近身" },
+    { "id": "multi-path", "label": "多路者", "shortLabel": "多路" }
+  ]
+}
