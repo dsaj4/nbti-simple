@@ -62,11 +62,15 @@ export function QuizPage({
         aria-valuetext={`第 ${questionIndex + 1} 题，共 ${totalQuestions} 题`}
       >
         <div className="quiz-page__progress-text">
+          <span className="quiz-page__progress-label">已完成</span>
           <span className="quiz-page__progress-current">
             {String(questionIndex + 1).padStart(2, "0")}
           </span>
           <span className="quiz-page__progress-divider">/</span>
           <span>{String(totalQuestions).padStart(2, "0")}</span>
+          <span className="quiz-page__progress-percent">
+            {Math.round(progress)}%
+          </span>
         </div>
         <div className="quiz-page__progress-track" aria-hidden="true">
           <div

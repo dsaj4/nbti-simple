@@ -30,8 +30,8 @@
 /* Question register ------------------------------------------------------- */
 
 .quiz-page {
-  width: min(100%, 860px);
-  max-width: 860px;
+  width: min(100%, 1080px);
+  max-width: 1080px;
 }
 
 .quiz-page__header {
@@ -49,8 +49,16 @@
 }
 
 .quiz-page__progress-text {
-  min-width: 96px;
+  min-width: 142px;
   align-items: baseline;
+}
+
+.quiz-page__progress-label {
+  color: var(--ink-muted);
+  font-family: var(--font-ui);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
 }
 
 .quiz-page__progress-current {
@@ -60,25 +68,32 @@
 }
 
 .quiz-page__progress-track {
-  height: 10px;
-  border: 0;
-  border-top: 1px solid var(--atlas-rule);
-  border-bottom: 1px solid var(--atlas-rule);
+  height: 12px;
+  overflow: hidden;
+  border: 1px solid var(--atlas-rule);
+  border-radius: 999px;
   background:
     repeating-linear-gradient(
       90deg,
       transparent 0 calc(8.333% - 1px),
-      rgb(36 74 67 / 24%) calc(8.333% - 1px) 8.333%
+      rgb(36 74 67 / 20%) calc(8.333% - 1px) 8.333%
     ),
-    transparent;
+    rgb(36 74 67 / 5%);
 }
 
 .quiz-page__progress-bar {
-  top: 2px;
-  bottom: 2px;
-  height: auto;
-  background: var(--teal);
-  box-shadow: none;
+  height: 100%;
+  min-width: 8px;
+  background: linear-gradient(90deg, var(--teal), #62aaa1);
+  box-shadow: inset -1px 0 0 rgb(255 255 255 / 42%);
+}
+
+.quiz-page__progress-percent {
+  margin-left: 3px;
+  color: var(--teal);
+  font-family: var(--font-numeric);
+  font-size: 12px;
+  font-weight: 700;
 }
 
 .quiz-page__card {
@@ -614,6 +629,15 @@
     content: "MIND FIELD NOTES";
   }
 
+  .quiz-page__progress-label,
+  .quiz-page__progress-percent {
+    display: none;
+  }
+
+  .quiz-page__progress-text {
+    min-width: 82px;
+  }
+
   .quiz-page__progress {
     margin: 18px 0 22px;
   }
@@ -868,7 +892,14 @@
 }
 
 @media (min-width: 1000px) {
+  .quiz-page {
+    width: min(100%, 1180px);
+    max-width: 1180px;
+  }
+
   .quiz-page__card {
+    min-height: 540px;
+    padding: 128px clamp(42px, 5.5vw, 76px) 48px;
     overflow: visible;
   }
 
@@ -876,8 +907,42 @@
     left: -58px;
   }
 
+  .quiz-page__content {
+    display: grid;
+    width: 100%;
+    max-width: none;
+    grid-template-columns: minmax(0, 0.94fr) minmax(360px, 1.06fr);
+    column-gap: clamp(48px, 7vw, 104px);
+    align-items: start;
+  }
+
+  .quiz-page__tag {
+    grid-column: 1;
+    margin-bottom: 20px;
+  }
+
   .quiz-page__prompt {
-    padding-right: 112px;
+    grid-column: 1;
+    max-width: none;
+    padding-right: 0;
+    font-size: clamp(30px, 3vw, 42px);
+    line-height: 1.36;
+  }
+
+  .quiz-page__options {
+    grid-column: 2;
+    grid-row: 1 / span 2;
+    margin-top: 8px;
+  }
+
+  .quiz-page__option {
+    min-height: 80px;
+    padding: 17px 12px;
+  }
+
+  .quiz-page__option-label {
+    font-size: 17px;
+    line-height: 1.62;
   }
 
   .report-cover__backdrop-type {
