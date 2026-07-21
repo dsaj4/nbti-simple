@@ -85,18 +85,20 @@ describe("report role presentation layer", () => {
     );
   });
 
-  it("only points at files for the twelve generated roles", () => {
+  it("only points at files for the fourteen generated roles", () => {
     const rolesWithAssets = reportRoleIds.filter(
       (roleId) => Boolean(reportRoleMap[roleId].assetSrc),
     );
 
     expect(rolesWithAssets).toEqual([
+      "wall-breaker",
       "watchdog",
       "stress-tester",
       "cyber-adjudicator",
       "iteration-engine",
       "fixed-bearing",
       "signal-clarifier",
+      "specialist",
       "system-maximalist",
       "imprint-system",
       "momentum-pump",
