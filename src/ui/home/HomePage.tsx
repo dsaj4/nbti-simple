@@ -37,11 +37,11 @@ export function HomePage({
           <span className="home-page__archive-index">
             NBTI / FIELD RECORD
             <br />
-            ARCHIVE 01—12
+            ARCHIVE 01—24
           </span>
           <strong className="home-page__archive-word">MIND</strong>
           <span className="home-page__archive-coordinate">
-            12 SITUATIONS · 04 AXES
+            24 SITUATIONS · 04 AXES
           </span>
         </div>
 
@@ -62,7 +62,7 @@ export function HomePage({
           </h1>
 
           <p className="home-page__lead">
-            完成 12 道没有标准答案的情境题，获得一份可解释的思维风格报告。
+            完成 24 道没有标准答案的情境题，获得一份可解释的思维风格报告。
           </p>
 
           <div className="home-page__meta">

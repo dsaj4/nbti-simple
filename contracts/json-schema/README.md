@@ -2,13 +2,13 @@
 
 本目录定义三个相互分离的 JSON Schema（Draft 2020-12）：
 
-- `nbti-questionnaire.v1.schema.json`：站内可信题库，包含题目、解释动作、计分权重与结果类型；
+- `nbti-questionnaire.v2.schema.json`：站内可信题库，包含 24 道题、解释动作、多维极性权重与 12 个结果类型；
 - `nbti-agent-request.v1.schema.json`：发给 Agent 的安全投影，只包含题面与稳定 ID；
 - `nbti-agent-response.v1.schema.json`：Agent 的成功或错误响应。
 
 ## 数据流
 
-`src/content/nbti-mvp.v1.json` 是当前题目内容的唯一来源。应用启动时由
+`src/content/nbti-mvp.v2.json` 是当前题目内容的唯一来源。应用启动时由
 `src/content/questionnaire.ts` 做结构与跨记录语义校验，再转换成既有
 `SeriesDefinition`，因此现有确定性计分、草稿恢复和分享链接保持不变。
 
@@ -38,7 +38,7 @@ Unicode NFC，再对 UTF-8 JSON 计算 SHA-256。题目文字、顺序、选项�
 - rationale 始终视为不可信文本，不写入报告或默认日志；
 - 部分答案、重复答案、错误归属、版本或摘要不匹配一律拒绝，不用默认答案补齐。
 
-JSON Schema 负责通用结构约束；题目 ID 唯一性、当前 12×4 平衡矩阵、完整题集覆盖等
+JSON Schema 负责通用结构约束；题目 ID 唯一性、当前 24×4 极性矩阵、完整题集覆盖等
 跨记录规则由运行时校验器负责。
 
 ## 示例

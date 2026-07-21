@@ -3,12 +3,22 @@ export type ScoreResult = {
   seriesId: string;
   version: string;
   primaryResultId: string;
+  rawTypeCode: string;
+  typeCode: string;
   dimensionScores: Record<DimensionKey, number>;
+  centeredScores: Record<DimensionKey, number>;
   dimensionPositions: Record<DimensionKey, number>;
+  preferenceClarity: Record<DimensionKey, PreferenceClarity>;
   evidence: EvidenceItem[];
 };
 
-export type DimensionKey = "organization" | "calibration" | "momentum" | "scope";
+export type DimensionKey =
+  | "cognitivePath"
+  | "driveSource"
+  | "cognitiveTempo"
+  | "valueOrientation";
+
+export type PreferenceClarity = "very-clear" | "clear" | "borderline";
 
 export type EvidenceItem = {
   questionId: string;

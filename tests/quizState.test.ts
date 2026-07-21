@@ -15,7 +15,7 @@ describe("quiz state", () => {
   });
 
   it("preserves answers when navigating backward and forward", () => {
-    let state = createInitialQuizState(12);
+    let state = createInitialQuizState(24);
     state = quizReducer(state, { type: "select", questionIndex: 0, optionIndex: 2 });
     state = quizReducer(state, { type: "next" });
     state = quizReducer(state, { type: "select", questionIndex: 1, optionIndex: 1 });
@@ -84,11 +84,11 @@ describe("quiz state", () => {
   });
 
   it("resets to the initial state", () => {
-    let state = createInitialQuizState(12);
+    let state = createInitialQuizState(24);
     state = quizReducer(state, { type: "select", questionIndex: 0, optionIndex: 1 });
     state = quizReducer(state, { type: "go", questionIndex: 5 });
     state = quizReducer(state, { type: "reset" });
-    expect(state.answers).toEqual(Array(12).fill(null));
+    expect(state.answers).toEqual(Array(24).fill(null));
     expect(state.currentIndex).toBe(0);
   });
 });

@@ -1,138 +1,61 @@
 import { describe, expect, it } from "vitest";
+import type { DimensionKey } from "../contracts/score-result";
 import { nbtiSeries } from "../src/content/series";
-import type { SeriesDefinition } from "../contracts/series-definition";
-import {
-  allDimensionKeys,
-  computeDimensionBounds,
-  normalizeScores,
-  scoreAnswers,
-  sumWeights,
-} from "../src/domain/scoring";
+import { allDimensionKeys, centerScores, clarityForScore, computeDimensionBounds, resolveTypeCode, scoreAnswers, sumWeights } from "../src/domain/scoring";
 
-// Hand-tuned answer sequences that push one dimension to ±100 while keeping
-// the others small, guaranteeing the corresponding directional identity.
-const identityAnswers: Record<string, number[]> = {
-  deconstructor: [0, 1, 0, 1, 2, 0, 0, 0, 0, 1, 0, 0],
-  connector: [1, 1, 1, 1, 2, 1, 1, 0, 1, 1, 1, 0],
-  calibrator: [1, 0, 2, 1, 0, 0, 3, 0, 0, 0, 2, 0],
-  "context-reader": [0, 1, 3, 0, 1, 1, 2, 1, 1, 1, 3, 1],
-  anchor: [1, 3, 0, 0, 1, 3, 3, 2, 0, 3, 3, 0],
-  explorer: [0, 2, 1, 1, 0, 2, 1, 3, 0, 2, 2, 1],
-  overlooker: [2, 1, 1, 2, 2, 2, 2, 0, 2, 2, 3, 2],
-  present: [3, 0, 0, 3, 3, 3, 3, 1, 3, 3, 1, 3],
-};
-
-// A near-neutral answer sequence designed to keep every dimension close to zero.
-const weakSignalAnswers = [0, 1, 1, 0, 0, 0, 1, 1, 0, 0, 0, 1];
-
-describe("scoring", () => {
-  it("is deterministic for the same answers", () => {
-    const answers = [0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3];
-    const first = scoreAnswers(nbtiSeries, answers);
-    const second = scoreAnswers(nbtiSeries, answers);
-    expect(first.primaryResultId).toBe(second.primaryResultId);
-    expect(first.dimensionPositions).toEqual(second.dimensionPositions);
-    expect(first.evidence).toEqual(second.evidence);
-  });
-
-  it("reaches all eight directional identities", () => {
-    for (const [identityId, answers] of Object.entries(identityAnswers)) {
-      const result = scoreAnswers(nbtiSeries, answers);
-      expect(result.primaryResultId).toBe(identityId);
-
-      const maxPosition = Math.max(
-        ...allDimensionKeys.map((key) =>
-          Math.abs(result.dimensionPositions[key]),
-        ),
-      );
-      expect(maxPosition).toBe(100);
+describe("NBTI v2 scoring", () => {
+  it("uses the 24-question multi-polarity matrix", () => {
+    expect(nbtiSeries.questions).toHaveLength(24);
+    for (const question of nbtiSeries.questions) {
+      for (const option of question.options) {
+        const nonZero = Object.values(option.weights).filter(Boolean);
+        expect(nonZero.length).toBeGreaterThanOrEqual(2);
+        expect(nonZero.length).toBeLessThanOrEqual(3);
+      }
     }
-  });
-
-  it("reaches the weak-signal fallback identity", () => {
-    const result = scoreAnswers(nbtiSeries, weakSignalAnswers);
-    const maxPosition = Math.max(
-      ...allDimensionKeys.map((key) =>
-        Math.abs(result.dimensionPositions[key]),
-      ),
-    );
-    expect(maxPosition).toBeLessThan(35);
-    expect(result.primaryResultId).toBe("multi-path");
-  });
-
-  it("normalizes negative and positive sides independently", () => {
-    const bounds = computeDimensionBounds(nbtiSeries);
-    const negativeSums = Object.fromEntries(
-      allDimensionKeys.map((key) => [key, bounds[key].min]),
-    ) as Record<(typeof allDimensionKeys)[number], number>;
-    const positiveSums = Object.fromEntries(
-      allDimensionKeys.map((key) => [key, bounds[key].max]),
-    ) as Record<(typeof allDimensionKeys)[number], number>;
-
-    expect(normalizeScores(negativeSums, bounds)).toEqual(
-      Object.fromEntries(allDimensionKeys.map((key) => [key, -100])),
-    );
-    expect(normalizeScores(positiveSums, bounds)).toEqual(
-      Object.fromEntries(allDimensionKeys.map((key) => [key, 100])),
-    );
-  });
-
-  it("computes bounds from one reachable option per question", () => {
-    const series: SeriesDefinition = {
-      ...nbtiSeries,
-      questions: [
-        {
-          ...nbtiSeries.questions[0],
-          options: nbtiSeries.questions[0].options.map((option, index) => ({
-            ...option,
-            weights: {
-              ...option.weights,
-              organization: [-2, -1, 1, 2][index] as -2 | -1 | 1 | 2,
-            },
-          })),
-        },
-      ],
-    };
-
-    expect(computeDimensionBounds(series).organization).toEqual({
-      min: -2,
-      max: 2,
+    expect(computeDimensionBounds(nbtiSeries)).toEqual({
+      cognitivePath: { min: -24, max: 24 },
+      driveSource: { min: -24, max: 24 },
+      cognitiveTempo: { min: -24, max: 24 },
+      valueOrientation: { min: -24, max: 24 },
     });
   });
 
-  it("caps extreme sums at -100 and 100", () => {
-    const bounds = computeDimensionBounds(nbtiSeries);
-    const exaggerated = Object.fromEntries(
-      allDimensionKeys.map((key) => [key, bounds[key].min * 2]),
-    ) as Record<(typeof allDimensionKeys)[number], number>;
-    const positions = normalizeScores(exaggerated, bounds);
-    for (const key of allDimensionKeys) {
-      expect(positions[key]).toBe(-100);
-    }
+  it("subtracts the frozen cold-start medians", () => {
+    const raw = { cognitivePath: 6, driveSource: 5, cognitiveTempo: 4, valueOrientation: 7 };
+    expect(centerScores(nbtiSeries, raw)).toEqual({ cognitivePath: 4, driveSource: 5, cognitiveTempo: 1, valueOrientation: 6 });
   });
 
-  it("selects evidence with the same sign as the primary direction", () => {
-    const result = scoreAnswers(nbtiSeries, identityAnswers.explorer);
-    expect(result.evidence.length).toBeGreaterThanOrEqual(3);
-    for (const item of result.evidence) {
-      expect(item.dimensionKey).toBe("momentum");
-      expect(Math.sign(item.weight)).toBe(1);
-    }
+  it("assigns PCI levels at the documented cutoffs", () => {
+    expect(clarityForScore(6)).toBe("very-clear");
+    expect(clarityForScore(-3)).toBe("clear");
+    expect(clarityForScore(2)).toBe("borderline");
+    expect(clarityForScore(0)).toBe("borderline");
   });
 
-  it("selects evidence from different question tags when possible", () => {
-    const result = scoreAnswers(nbtiSeries, identityAnswers.overlooker);
-    const tags = result.evidence.map((item) =>
-      item.questionTitle.split(" · ")[0],
-    );
-    expect(new Set(tags).size).toBeGreaterThanOrEqual(
-      Math.min(3, result.evidence.length),
-    );
+  it("builds a four-letter type from centered scores", () => {
+    const centered: Record<DimensionKey, number> = { cognitivePath: 4, driveSource: 5, cognitiveTempo: 1, valueOrientation: 6 };
+    expect(resolveTypeCode(centered)).toEqual({ rawTypeCode: "DLRP", typeCode: "DLRP" });
   });
 
-  it("sums weights correctly", () => {
-    const answers = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-    const sums = sumWeights(nbtiSeries, answers);
-    expect(Object.values(sums).some((value) => value !== 0)).toBe(true);
+  it("folds a removed type by flipping its least-clear dimension", () => {
+    const centered: Record<DimensionKey, number> = { cognitivePath: -7, driveSource: 1, cognitiveTempo: 5, valueOrientation: 8 };
+    expect(resolveTypeCode(centered)).toEqual({ rawTypeCode: "CLRP", typeCode: "CNRP" });
+  });
+
+  it("is deterministic and returns one of twelve result types", () => {
+    const answers = Array.from({ length: 24 }, (_, index) => index % 4);
+    const first = scoreAnswers(nbtiSeries, answers);
+    const second = scoreAnswers(nbtiSeries, answers);
+    expect(first).toEqual(second);
+    expect(nbtiSeries.resultTypes.map((result) => result.id)).toContain(first.primaryResultId);
+    expect(first.typeCode).toHaveLength(4);
+    expect(first.evidence.length).toBeLessThanOrEqual(3);
+  });
+
+  it("sums all mapped dimensions for each selected option", () => {
+    const answers = Array(24).fill(0);
+    const expected = Object.fromEntries(allDimensionKeys.map((key) => [key, nbtiSeries.questions.reduce((sum, question) => sum + question.options[0].weights[key], 0)]));
+    expect(sumWeights(nbtiSeries, answers)).toEqual(expected);
   });
 });

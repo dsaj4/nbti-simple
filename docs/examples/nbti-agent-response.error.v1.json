@@ -6,8 +6,8 @@
   "status": "error",
   "seriesRef": {
     "id": "nbti-mvp",
-    "version": "1",
-    "contentDigest": "sha256:cab42a7aa8b5d96ac65c9448c111fe28f8433d32d8a281fc3911908210f187d7"
+    "version": "2",
+    "contentDigest": "sha256:15d3aa51300d1e885f5d18ac635379f12eef93c951b92ff1d609eb6a5661b757"
   },
   "error": {
     "code": "AGENT_REFUSED",

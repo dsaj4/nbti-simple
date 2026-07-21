@@ -1,5 +1,5 @@
 import type { DimensionKey } from "../../contracts/series-definition";
-import rawQuestionnaire from "./nbti-mvp.v1.json";
+import rawQuestionnaire from "./nbti-mvp.v2.json";
 import { parseQuestionnaireDocument } from "./questionnaire";
 
 const parsedQuestionnaire = parseQuestionnaireDocument(rawQuestionnaire);

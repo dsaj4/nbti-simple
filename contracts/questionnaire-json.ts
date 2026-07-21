@@ -6,7 +6,7 @@ import type {
 
 export type QuestionnaireDocument = {
   $schema?: string;
-  schemaVersion: "1.0.0";
+  schemaVersion: "2.0.0";
   kind: "nbti.questionnaire";
   id: string;
   version: string;
@@ -18,6 +18,7 @@ export type QuestionnaireDocument = {
   dimensions: QuestionnaireDimension[];
   questions: QuestionnaireQuestion[];
   resultTypes: ResultType[];
+  scoring: ScoringProfile;
 };
 
 export type QuestionnaireSafety = {
@@ -54,4 +55,9 @@ export type QuestionnaireOption = {
   label: string;
   action: string;
   weights: DimensionWeights;
+};
+
+export type ScoringProfile = {
+  medians: Record<DimensionKey, number>;
+  scaleFactor: number;
 };

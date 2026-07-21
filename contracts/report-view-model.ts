@@ -4,6 +4,7 @@ export type ReportViewModel = {
   role: ReportRole;
   stage: ReportStage;
   dimensions: ReportDimension[];
+  hasBoundaryState: boolean;
   actions: ReportAction[];
   evidence: ReportEvidence[];
   safetyNote: string;
@@ -42,6 +43,8 @@ export type ReportDimension = {
   value: number;
   positionLabel: string;
   explanation: string;
+  clarity: "very-clear" | "clear" | "borderline";
+  clarityLabel: string;
 };
 
 export type ReportAction = {

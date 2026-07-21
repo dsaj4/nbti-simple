@@ -8,6 +8,7 @@ export type SeriesDefinition = {
   title: string;
   questions: Question[];
   resultTypes: ResultType[];
+  scoring: ScoringProfile;
 };
 
 export type Question = {
@@ -26,18 +27,24 @@ export type QuestionOption = {
 };
 
 export type DimensionWeights = {
-  organization: WeightValue;
-  calibration: WeightValue;
-  momentum: WeightValue;
-  scope: WeightValue;
+  cognitivePath: WeightValue;
+  driveSource: WeightValue;
+  cognitiveTempo: WeightValue;
+  valueOrientation: WeightValue;
 };
 
-export type WeightValue = -2 | -1 | 0 | 1 | 2;
+export type WeightValue = -1 | 0 | 1;
 
 export type DimensionKey = keyof DimensionWeights;
 
 export type ResultType = {
   id: string;
+  code: string;
   label: string;
   shortLabel?: string;
+};
+
+export type ScoringProfile = {
+  medians: Record<DimensionKey, number>;
+  scaleFactor: number;
 };

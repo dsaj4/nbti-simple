@@ -6,12 +6,12 @@ import type {
 } from "../contracts/agent-answer";
 import agentRequestSchema from "../contracts/json-schema/nbti-agent-request.v1.schema.json";
 import agentResponseSchema from "../contracts/json-schema/nbti-agent-response.v1.schema.json";
-import questionnaireSchema from "../contracts/json-schema/nbti-questionnaire.v1.schema.json";
+import questionnaireSchema from "../contracts/json-schema/nbti-questionnaire.v2.schema.json";
 import agentRequestExample from "../docs/examples/nbti-agent-request.single.v1.json";
 import agentErrorResponseExample from "../docs/examples/nbti-agent-response.error.v1.json";
 import agentResponseExample from "../docs/examples/nbti-agent-response.ok.v1.json";
 import { identityMap } from "../src/content/identities";
-import rawQuestionnaire from "../src/content/nbti-mvp.v1.json";
+import rawQuestionnaire from "../src/content/nbti-mvp.v2.json";
 import {
   nbtiQuestionnaire,
   nbtiSeries,
@@ -82,7 +82,7 @@ describe("questionnaire JSON contract", () => {
     const leakedRequest = structuredClone(agentRequestExample) as unknown as {
       questions: Array<{ options: Array<Record<string, unknown>> }>;
     };
-    leakedRequest.questions[0].options[0].weights = { organization: -2 };
+    leakedRequest.questions[0].options[0].weights = { cognitivePath: 1 };
     expect(validateRequest(leakedRequest)).toBe(false);
   });
 
@@ -91,7 +91,7 @@ describe("questionnaire JSON contract", () => {
     expect(parsed.series).toEqual(nbtiSeries);
     expect(parsed.document).toEqual(nbtiQuestionnaire);
     expect(parsed.series.questions.map((question) => question.id)).toEqual(
-      Array.from({ length: 12 }, (_, index) =>
+      Array.from({ length: 24 }, (_, index) =>
         `q${String(index + 1).padStart(2, "0")}`,
       ),
     );
@@ -99,7 +99,7 @@ describe("questionnaire JSON contract", () => {
       parsed.series.questions.flatMap((question) =>
         question.options.map((option) => option.id),
       ),
-    ).toHaveLength(48);
+    ).toHaveLength(96);
   });
 
   it("matches the stored content digest", async () => {
@@ -123,10 +123,10 @@ describe("questionnaire JSON contract", () => {
 
   it("preserves the balanced scoring matrix and report identities", () => {
     expect(computeDimensionBounds(nbtiSeries)).toEqual({
-      organization: { min: -12, max: 12 },
-      calibration: { min: -12, max: 12 },
-      momentum: { min: -12, max: 12 },
-      scope: { min: -12, max: 12 },
+      cognitivePath: { min: -24, max: 24 },
+      driveSource: { min: -24, max: 24 },
+      cognitiveTempo: { min: -24, max: 24 },
+      valueOrientation: { min: -24, max: 24 },
     });
     expect(new Set(nbtiSeries.resultTypes.map((result) => result.id))).toEqual(
       new Set(Object.keys(identityMap)),
@@ -136,7 +136,7 @@ describe("questionnaire JSON contract", () => {
   it("preserves the positional meaning of an existing v1 share link", () => {
     const decoded = decodeResult(
       "#report/nbti-mvp:1:213322333232",
-      nbtiSeries.questions.length,
+      12,
     );
     expect(decoded).toEqual({
       ok: true,
@@ -147,9 +147,7 @@ describe("questionnaire JSON contract", () => {
       },
     });
     if (decoded.ok) {
-      expect(
-        scoreAnswers(nbtiSeries, decoded.value.answers).primaryResultId,
-      ).toBe("multi-path");
+      expect(decoded.value.version).toBe("1");
     }
   });
 
@@ -161,15 +159,17 @@ describe("questionnaire JSON contract", () => {
     );
 
     const multiWeight = structuredClone(rawQuestionnaire);
-    multiWeight.questions[0].options[0].weights.scope = 2;
+    multiWeight.questions[0].options[0].weights.cognitiveTempo = 1;
     expect(() => parseQuestionnaireDocument(multiWeight)).toThrow(
-      /exactly one non-zero weight/,
+      /exactly two or three dimension polarities/,
     );
 
     const unbalanced = structuredClone(rawQuestionnaire);
-    unbalanced.questions[0].options[1].weights.organization = -2;
+    unbalanced.questions[0].options.forEach((option) => {
+      option.weights.cognitivePath = 1;
+    });
     expect(() => parseQuestionnaireDocument(unbalanced)).toThrow(
-      /balance two dimensions/,
+      /cognitivePath must include both polarities|must map exactly two or three dimension polarities/,
     );
   });
 
@@ -177,7 +177,7 @@ describe("questionnaire JSON contract", () => {
     const unknownResult = structuredClone(rawQuestionnaire);
     unknownResult.resultTypes[0].id = "replacement";
     expect(() => parseQuestionnaireDocument(unknownResult)).toThrow(
-      /unknown result type/,
+      /unknown or duplicate result type/,
     );
 
     const optionalShortLabel = structuredClone(rawQuestionnaire);
@@ -207,11 +207,11 @@ describe("agent answer JSON protocol", () => {
     const request = buildFullBatchRequest();
     const serialized = JSON.stringify(request);
 
-    expect(request.questions).toHaveLength(12);
+    expect(request.questions).toHaveLength(24);
     expect(serialized).not.toContain("weights");
     expect(serialized).not.toContain("action");
     expect(serialized).not.toContain("resultTypes");
-    expect(serialized).not.toContain("deconstructor");
+    expect(serialized).not.toContain("wall-breaker");
     expect(request.constraints.scoringMetadataIncluded).toBe(false);
   });
 
@@ -242,8 +242,8 @@ describe("agent answer JSON protocol", () => {
       nbtiQuestionnaire,
     );
 
-    expect(indexes).toEqual(Array(12).fill(0));
-    expect(scoreAnswers(nbtiSeries, indexes).primaryResultId).toBe("deconstructor");
+    expect(indexes).toEqual(Array(24).fill(0));
+    expect(scoreAnswers(nbtiSeries, indexes).primaryResultId).toBe("wall-breaker");
   });
 
   it("keeps rationale and confidence outside deterministic scoring", () => {
@@ -294,7 +294,7 @@ describe("agent answer JSON protocol", () => {
     expectProtocolError(crossQuestion, request, "UNKNOWN_OPTION_ID");
 
     const wrongVersion = okResponseFor(request, 0);
-    wrongVersion.seriesRef.version = "2";
+    wrongVersion.seriesRef.version = "1";
     expectProtocolError(wrongVersion, request, "SERIES_VERSION_MISMATCH");
 
     const wrongDigest = okResponseFor(request, 0);

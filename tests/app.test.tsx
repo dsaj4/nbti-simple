@@ -85,7 +85,7 @@ describe("App flow", () => {
     sessionStorage.setItem(
       "nbti-quiz-draft",
       JSON.stringify({
-        answers: [0, 1, null, null, null, null, null, null, null, null, null, null],
+        answers: [0, 1, ...Array(22).fill(null)],
         currentIndex: 2,
         savedAt: Date.now(),
       }),
@@ -121,13 +121,13 @@ describe("App flow", () => {
     window.location.hash = `#${encodeResult(
       nbtiSeries.id,
       nbtiSeries.version,
-      Array(12).fill(0),
+      Array(24).fill(0),
     )}`;
     render(<App />);
 
     const expectedRole = buildReportViewModel(
       nbtiSeries,
-      Array(12).fill(0),
+      Array(24).fill(0),
     ).role.label;
     expect(screen.getByRole("heading", { name: expectedRole })).toBeVisible();
     expect(
@@ -140,14 +140,14 @@ describe("App flow", () => {
     window.location.hash = `#${encodeResult(
       nbtiSeries.id,
       nbtiSeries.version,
-      Array(12).fill(0),
+      Array(24).fill(0),
     )}`;
     window.dispatchEvent(new Event("hashchange"));
 
     await waitFor(() => {
       const expectedRole = buildReportViewModel(
         nbtiSeries,
-        Array(12).fill(0),
+        Array(24).fill(0),
       ).role.label;
       expect(screen.getByRole("heading", { name: expectedRole })).toBeVisible();
     });
@@ -159,7 +159,7 @@ describe("App flow", () => {
 });
 
 describe("ReportPage", () => {
-  const report = buildReportViewModel(nbtiSeries, Array(12).fill(0));
+  const report = buildReportViewModel(nbtiSeries, Array(24).fill(0));
 
   beforeEach(() => {
     Object.defineProperty(navigator, "share", {

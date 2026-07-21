@@ -38,7 +38,7 @@ export const reportRoleMap: Record<ReportRoleId, ReportRoleDefinition> = {
       { title: "换入口验证", description: "从新的切口做一个可回退的小验证。" },
     ],
     assetSrc: "/assets/report-roles/wall-breaker.webp",
-    primaryDimension: "organization",
+    primaryDimension: "cognitivePath",
     primarySign: 1,
   },
   watchdog: {
@@ -54,7 +54,7 @@ export const reportRoleMap: Record<ReportRoleId, ReportRoleDefinition> = {
       { title: "再放行判断", description: "通过基本核验后，再把信息用于下一步决定。" },
     ],
     assetSrc: "/assets/report-roles/watchdog.webp",
-    primaryDimension: "calibration",
+    primaryDimension: "cognitiveTempo",
     primarySign: -1,
   },
   "stress-tester": {
@@ -70,7 +70,7 @@ export const reportRoleMap: Record<ReportRoleId, ReportRoleDefinition> = {
       { title: "补上论证", description: "把经不起追问的连接补齐，而不是停在反驳。" },
     ],
     assetSrc: "/assets/report-roles/stress-tester.webp",
-    primaryDimension: "organization",
+    primaryDimension: "valueOrientation",
     primarySign: -1,
   },
   "cyber-adjudicator": {
@@ -86,7 +86,7 @@ export const reportRoleMap: Record<ReportRoleId, ReportRoleDefinition> = {
       { title: "暂缓裁决", description: "关键条件缺失时，先保留结论并继续核验。" },
     ],
     assetSrc: "/assets/report-roles/cyber-adjudicator.webp",
-    primaryDimension: "calibration",
+    primaryDimension: "valueOrientation",
     primarySign: -1,
   },
   "iteration-engine": {
@@ -102,7 +102,7 @@ export const reportRoleMap: Record<ReportRoleId, ReportRoleDefinition> = {
       { title: "检查投入产出", description: "在每一轮之间确认继续加码是否仍然值得。" },
     ],
     assetSrc: "/assets/report-roles/iteration-engine.webp",
-    primaryDimension: "momentum",
+    primaryDimension: "driveSource",
     primarySign: 1,
   },
   "fixed-bearing": {
@@ -118,7 +118,7 @@ export const reportRoleMap: Record<ReportRoleId, ReportRoleDefinition> = {
       { title: "到节点复盘", description: "在预先约定的节点重新检查方向是否仍然成立。" },
     ],
     assetSrc: "/assets/report-roles/fixed-bearing.webp",
-    primaryDimension: "momentum",
+    primaryDimension: "cognitiveTempo",
     primarySign: -1,
   },
   "signal-clarifier": {
@@ -134,7 +134,7 @@ export const reportRoleMap: Record<ReportRoleId, ReportRoleDefinition> = {
       { title: "保留修正空间", description: "形成当前判断，同时允许新信息改变它。" },
     ],
     assetSrc: "/assets/report-roles/signal-clarifier.webp",
-    primaryDimension: "scope",
+    primaryDimension: "valueOrientation",
     primarySign: 1,
   },
   specialist: {
@@ -150,7 +150,7 @@ export const reportRoleMap: Record<ReportRoleId, ReportRoleDefinition> = {
       { title: "检查是否失配", description: "现场条件变化时，不让熟练变成机械套用。" },
     ],
     assetSrc: "/assets/report-roles/specialist.webp",
-    primaryDimension: "organization",
+    primaryDimension: "valueOrientation",
     primarySign: -1,
   },
   "imprint-system": {
@@ -166,7 +166,7 @@ export const reportRoleMap: Record<ReportRoleId, ReportRoleDefinition> = {
       { title: "允许重新制版", description: "新信息不再适配时，及时修改原有框架。" },
     ],
     assetSrc: "/assets/report-roles/imprint-system.webp",
-    primaryDimension: "momentum",
+    primaryDimension: "driveSource",
     primarySign: -1,
   },
   "rooted-systems-reader": {
@@ -182,7 +182,7 @@ export const reportRoleMap: Record<ReportRoleId, ReportRoleDefinition> = {
       { title: "保留生长空间", description: "避免为了短期整齐锁死未来调整的可能。" },
     ],
     assetSrc: "/assets/report-roles/rooted-systems-reader.webp",
-    primaryDimension: "scope",
+    primaryDimension: "cognitivePath",
     primarySign: -1,
   },
   "probability-navigator": {
@@ -198,7 +198,7 @@ export const reportRoleMap: Record<ReportRoleId, ReportRoleDefinition> = {
       { title: "保留退出路线", description: "优先选择可以止损、撤回或调整的动作。" },
     ],
     assetSrc: "/assets/report-roles/probability-navigator.webp",
-    primaryDimension: "momentum",
+    primaryDimension: "cognitiveTempo",
     primarySign: 1,
   },
   "noise-sweeper": {
@@ -214,7 +214,7 @@ export const reportRoleMap: Record<ReportRoleId, ReportRoleDefinition> = {
       { title: "露出主线", description: "让真正影响判断的结构重新可见。" },
     ],
     assetSrc: "/assets/report-roles/noise-sweeper.webp",
-    primaryDimension: "calibration",
+    primaryDimension: "cognitivePath",
     primarySign: -1,
   },
   "multi-path": {
@@ -229,84 +229,14 @@ export const reportRoleMap: Record<ReportRoleId, ReportRoleDefinition> = {
       { title: "按题变化", description: "你会随着现场约束切换判断入口。" },
       { title: "仅限本组", description: "换一组情境，结果可能会不同。" },
     ],
-    primaryDimension: "organization",
+    primaryDimension: "cognitivePath",
     primarySign: 1,
   },
 };
 
-type RoleSelector =
-  | ReportRoleId
-  | {
-      dimension: DimensionKey;
-      negative: ReportRoleId;
-      zero: ReportRoleId;
-      positive: ReportRoleId;
-    };
-
-// Presentation roles refine, but never replace, the canonical v1 scoring ID.
-// Each directional result uses one secondary dimension to choose a visible role.
-const roleSelectorByIdentity: Record<string, RoleSelector> = {
-  deconstructor: {
-    dimension: "momentum",
-    negative: "stress-tester",
-    zero: "stress-tester",
-    positive: "stress-tester",
-  },
-  connector: {
-    dimension: "calibration",
-    negative: "cyber-adjudicator",
-    zero: "cyber-adjudicator",
-    positive: "cyber-adjudicator",
-  },
-  calibrator: {
-    dimension: "scope",
-    negative: "watchdog",
-    zero: "watchdog",
-    positive: "noise-sweeper",
-  },
-  "context-reader": {
-    dimension: "organization",
-    negative: "wall-breaker",
-    zero: "signal-clarifier",
-    positive: "signal-clarifier",
-  },
-  anchor: {
-    dimension: "calibration",
-    negative: "imprint-system",
-    zero: "fixed-bearing",
-    positive: "fixed-bearing",
-  },
-  explorer: {
-    dimension: "scope",
-    negative: "probability-navigator",
-    zero: "iteration-engine",
-    positive: "iteration-engine",
-  },
-  overlooker: "rooted-systems-reader",
-  present: {
-    dimension: "organization",
-    negative: "specialist",
-    zero: "specialist",
-    positive: "specialist",
-  },
-  "multi-path": "multi-path",
-};
-
 export function reportRoleForIdentity(
   identityId: string,
-  positions: Record<DimensionKey, number>,
+  _positions: Record<DimensionKey, number>,
 ): ReportRoleDefinition {
-  const selector = roleSelectorByIdentity[identityId] ?? "multi-path";
-  if (typeof selector === "string") {
-    return reportRoleMap[selector];
-  }
-
-  const value = positions[selector.dimension];
-  const roleId =
-    value < 0
-      ? selector.negative
-      : value > 0
-        ? selector.positive
-        : selector.zero;
-  return reportRoleMap[roleId];
+  return reportRoleMap[identityId as ReportRoleId] ?? reportRoleMap["multi-path"];
 }

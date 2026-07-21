@@ -22,10 +22,10 @@ const dimensionIcons: Record<
   string,
   { left: React.ElementType; right: React.ElementType }
 > = {
-  organization: { left: ArrowsSplit, right: BookOpenText },
-  calibration: { left: MagnifyingGlass, right: BookOpenText },
-  momentum: { left: Anchor, right: Footprints },
-  scope: { left: Globe, right: UsersThree },
+  cognitivePath: { left: BookOpenText, right: ArrowsSplit },
+  driveSource: { left: Sparkle, right: MagnifyingGlass },
+  cognitiveTempo: { left: Footprints, right: Anchor },
+  valueOrientation: { left: UsersThree, right: Globe },
 };
 
 export function ReportPage({ report, shareUrl, onRetake }: ReportPageProps) {
@@ -52,7 +52,7 @@ export function ReportPage({ report, shareUrl, onRetake }: ReportPageProps) {
 
           <div className="report-cover__archive-stamp" aria-hidden="true">
             <span>FIELD NOTES</span>
-            <strong>12 / 12</strong>
+            <strong>24 / 24</strong>
             <small>COMPLETED</small>
           </div>
 
@@ -121,7 +121,7 @@ export function ReportPage({ report, shareUrl, onRetake }: ReportPageProps) {
                         {dimension.label}
                       </span>
                       <span className="report-cover__dimension-position">
-                        {dimension.positionLabel}
+                        {dimension.positionLabel} · {dimension.clarityLabel}
                       </span>
                     </div>
                     <div className="report-cover__dimension-ends" aria-hidden="true">
@@ -185,6 +185,11 @@ export function ReportPage({ report, shareUrl, onRetake }: ReportPageProps) {
         ) : null}
 
         <h2 className="report-details__title">四个维度的完整位置</h2>
+        {report.hasBoundaryState ? (
+          <p className="report-cover__limitation">
+            边界状态：至少一个维度的偏好较轻，换一组情境时可能呈现相反一侧的处理方式。
+          </p>
+        ) : null}
         <div className="report-dimensions">
           {report.dimensions.map((dimension) => {
             const icons = dimensionIcons[dimension.id] ?? {
@@ -204,7 +209,7 @@ export function ReportPage({ report, shareUrl, onRetake }: ReportPageProps) {
                   <Icon weight="duotone" aria-hidden="true" />
                   <h3>{dimension.label}</h3>
                   <span className="report-dimension__position">
-                    {dimension.positionLabel}
+                    {dimension.positionLabel} · {dimension.clarityLabel}
                   </span>
                 </header>
                 <div className="report-dimension__ends" aria-hidden="true">
@@ -229,7 +234,7 @@ export function ReportPage({ report, shareUrl, onRetake }: ReportPageProps) {
         <div className="report-conditional">
           <h2 className="report-details__title">换一个现场也可能不同</h2>
           <p>
-            这份报告只来自你在这 12 道题里的选择。换一组情境、换一组约束，你的起手方式可能会不一样。把它当作一次“在这组题里，我更常先怎么做”的观察，而不是固定标签。
+            这份报告只来自你在这 24 道题里的选择。换一组情境、换一组约束，你的起手方式可能会不一样。把它当作一次“在这组题里，我更常先怎么做”的观察，而不是固定标签。
           </p>
         </div>
 

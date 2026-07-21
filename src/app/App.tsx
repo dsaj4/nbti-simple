@@ -9,6 +9,7 @@ import {
 import {
   clearReportHash,
   decodeResult,
+  decodeKnownResult,
   encodeResult,
   readReportHash,
   writeReportHash,
@@ -29,7 +30,10 @@ function getInitialAppPhase(): AppPhase {
     return { phase: "home" };
   }
 
-  const result = decodeResult(hash, nbtiSeries.questions.length);
+  const result = decodeKnownResult(hash, [
+    { seriesId: nbtiSeries.id, version: nbtiSeries.version, questionCount: nbtiSeries.questions.length },
+    { seriesId: "nbti-mvp", version: "1", questionCount: 12 },
+  ]);
   if (!result.ok) {
     return { phase: "invalid-link", reason: result.reason };
   }

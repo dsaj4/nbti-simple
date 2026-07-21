@@ -10,6 +10,13 @@ export type DecodeResult =
   | { ok: true; value: EncodedResult }
   | { ok: false; reason: string };
 
+export type SeriesShareProfile = {
+  seriesId: string;
+  version: string;
+  questionCount: number;
+  maxOptionIndex?: number;
+};
+
 function optionToChar(index: number): string {
   if (index < 0 || index > 35) {
     throw new Error("Option index out of base36 range");
@@ -84,6 +91,19 @@ export function decodeResult(
     ok: true,
     value: { seriesId, version, answers },
   };
+}
+
+export function decodeKnownResult(
+  hash: string,
+  profiles: SeriesShareProfile[],
+): DecodeResult {
+  const match = hash.match(/^#report\/([^:]+):([^:]+):/);
+  if (!match) return { ok: false, reason: "链接格式不正确" };
+  const profile = profiles.find(
+    (candidate) => candidate.seriesId === match[1] && candidate.version === match[2],
+  );
+  if (!profile) return { ok: false, reason: "分享链接对应的测试版本无法识别。" };
+  return decodeResult(hash, profile.questionCount, profile.maxOptionIndex ?? 3);
 }
 
 export function readReportHash(): string | undefined {

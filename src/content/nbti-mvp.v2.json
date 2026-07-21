@@ -1,0 +1,1416 @@
+{
+  "$schema": "../../contracts/json-schema/nbti-questionnaire.v2.schema.json",
+  "schemaVersion": "2.0.0",
+  "kind": "nbti.questionnaire",
+  "id": "nbti-mvp",
+  "version": "2",
+  "contentDigest": "sha256:15d3aa51300d1e885f5d18ac635379f12eef93c951b92ff1d609eb6a5661b757",
+  "locale": "zh-CN",
+  "title": "NBTI 12 类型思维风格测试",
+  "questionCount": 24,
+  "safety": {
+    "notDiagnosis": true,
+    "notPersonalityAssessment": true,
+    "notAbilityRating": true,
+    "statement": "NBTI 是趣味性的思维风格表达，不是心理诊断、人格测评或能力评级；结果只描述你在这组复杂情境中的判断方式。"
+  },
+  "dimensions": [
+    {
+      "id": "cognitivePath",
+      "label": "认知路径",
+      "left": {
+        "id": "construction",
+        "label": "建构 C"
+      },
+      "right": {
+        "id": "deconstruction",
+        "label": "解构 D"
+      },
+      "explanation": "你更常先搭建整体系统，还是拆开问题并检查底层结构。"
+    },
+    {
+      "id": "driveSource",
+      "label": "驱动力源",
+      "left": {
+        "id": "intuition",
+        "label": "直觉 N"
+      },
+      "right": {
+        "id": "logic",
+        "label": "逻辑 L"
+      },
+      "explanation": "你更常依据直觉与意象，还是依据逻辑、数据和可验证关系。"
+    },
+    {
+      "id": "cognitiveTempo",
+      "label": "认知节奏",
+      "left": {
+        "id": "agility",
+        "label": "敏捷 A"
+      },
+      "right": {
+        "id": "reflection",
+        "label": "反思 R"
+      },
+      "explanation": "你更常快速行动换取反馈，还是先停下来推演与复盘。"
+    },
+    {
+      "id": "valueOrientation",
+      "label": "价值取向",
+      "left": {
+        "id": "humanism",
+        "label": "人文 H"
+      },
+      "right": {
+        "id": "pragmatism",
+        "label": "实用 P"
+      },
+      "explanation": "你更常关注人的体验与意义，还是关注结果、效率和现实可行性。"
+    }
+  ],
+  "questions": [
+    {
+      "id": "q01",
+      "order": 1,
+      "tag": "危机与破局",
+      "title": "危机与破局",
+      "prompt": "你投入全部身家的核心项目遭遇了行业政策突变，资金链即将断裂，只够维持最后一个月的运营。此时你首先会怎么做？",
+      "options": [
+        {
+          "id": "q01-0",
+          "label": "召集团队，重新描绘项目的终极愿景，用极具感染力的演讲稳住军心，相信只要信念在就能找到出路。",
+          "action": "召集团队，重新描绘项目的终极愿景，用极具感染力的演讲稳住军心，相信只要信念在就能找到出路。",
+          "weights": {
+            "cognitivePath": -1,
+            "driveSource": -1,
+            "cognitiveTempo": 0,
+            "valueOrientation": -1
+          }
+        },
+        {
+          "id": "q01-1",
+          "label": "立刻关停所有边缘业务，把成本结构拆解到最细的颗粒度，将所有剩余资源砸向唯一能快速回血的单点。",
+          "action": "立刻关停所有边缘业务，把成本结构拆解到最细的颗粒度，将所有剩余资源砸向唯一能快速回血的单点。",
+          "weights": {
+            "cognitivePath": 1,
+            "driveSource": 1,
+            "cognitiveTempo": 0,
+            "valueOrientation": 1
+          }
+        },
+        {
+          "id": "q01-2",
+          "label": "凭直觉判断哪几个核心客户或投资人最有可能施以援手，立刻买机票飞过去当面沟通，先拿到救命钱再说。",
+          "action": "凭直觉判断哪几个核心客户或投资人最有可能施以援手，立刻买机票飞过去当面沟通，先拿到救命钱再说。",
+          "weights": {
+            "cognitivePath": 0,
+            "driveSource": -1,
+            "cognitiveTempo": -1,
+            "valueOrientation": 1
+          }
+        },
+        {
+          "id": "q01-3",
+          "label": "闭门不出，复盘整个商业模式的底层逻辑是否已经失效，如果逻辑不成立，宁愿果断清算也不再盲目挣扎。",
+          "action": "闭门不出，复盘整个商业模式的底层逻辑是否已经失效，如果逻辑不成立，宁愿果断清算也不再盲目挣扎。",
+          "weights": {
+            "cognitivePath": 1,
+            "driveSource": 1,
+            "cognitiveTempo": 1,
+            "valueOrientation": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": "q02",
+      "order": 2,
+      "tag": "危机与破局",
+      "title": "危机与破局",
+      "prompt": "你的公司推出了一款革命性的产品，但市场反馈极其冷淡，销量惨淡。面对内部的质疑声，你的应对策略是：",
+      "options": [
+        {
+          "id": "q02-0",
+          "label": "坚信自己对用户潜在需求的直觉判断，顶住压力继续打磨产品细节，直到它完美符合你心中的标准。",
+          "action": "坚信自己对用户潜在需求的直觉判断，顶住压力继续打磨产品细节，直到它完美符合你心中的标准。",
+          "weights": {
+            "cognitivePath": 0,
+            "driveSource": -1,
+            "cognitiveTempo": 1,
+            "valueOrientation": 1
+          }
+        },
+        {
+          "id": "q02-1",
+          "label": "迅速组织A/B测试，上线多个不同版本的营销方案，用最快的数据反馈来决定下一步的方向。",
+          "action": "迅速组织A/B测试，上线多个不同版本的营销方案，用最快的数据反馈来决定下一步的方向。",
+          "weights": {
+            "cognitivePath": 1,
+            "driveSource": 1,
+            "cognitiveTempo": -1,
+            "valueOrientation": 0
+          }
+        },
+        {
+          "id": "q02-2",
+          "label": "重新审视产品在整个行业生态中的位置，思考是否需要拉拢更多合作伙伴，构建一个更庞大的利益共同体来推动。",
+          "action": "重新审视产品在整个行业生态中的位置，思考是否需要拉拢更多合作伙伴，构建一个更庞大的利益共同体来推动。",
+          "weights": {
+            "cognitivePath": -1,
+            "driveSource": 1,
+            "cognitiveTempo": 1,
+            "valueOrientation": 0
+          }
+        },
+        {
+          "id": "q02-3",
+          "label": "亲自下场做客服，倾听那些少数喜欢该产品的用户的真实心声，理解它在情感层面为人们带来了什么价值。",
+          "action": "亲自下场做客服，倾听那些少数喜欢该产品的用户的真实心声，理解它在情感层面为人们带来了什么价值。",
+          "weights": {
+            "cognitivePath": 0,
+            "driveSource": -1,
+            "cognitiveTempo": 1,
+            "valueOrientation": -1
+          }
+        }
+      ]
+    },
+    {
+      "id": "q03",
+      "order": 3,
+      "tag": "危机与破局",
+      "title": "危机与破局",
+      "prompt": "你接手了一个内部关系错综复杂、效率极低的部门。新官上任，你的第一把火会烧向哪里？",
+      "options": [
+        {
+          "id": "q03-0",
+          "label": "引入一套严密的绩效考核和流程管理系统，用冰冷的数据和规则替代人为的判断和博弈。",
+          "action": "引入一套严密的绩效考核和流程管理系统，用冰冷的数据和规则替代人为的判断和博弈。",
+          "weights": {
+            "cognitivePath": 1,
+            "driveSource": 1,
+            "cognitiveTempo": 0,
+            "valueOrientation": 1
+          }
+        },
+        {
+          "id": "q03-1",
+          "label": "寻找部门中那些真正有才华但被边缘化的人，激发他们的创造力，用一种打破常规的文化重塑团队。",
+          "action": "寻找部门中那些真正有才华但被边缘化的人，激发他们的创造力，用一种打破常规的文化重塑团队。",
+          "weights": {
+            "cognitivePath": 0,
+            "driveSource": -1,
+            "cognitiveTempo": -1,
+            "valueOrientation": -1
+          }
+        },
+        {
+          "id": "q03-2",
+          "label": "花时间梳理部门历史和每个人的利益诉求，构建一个能平衡各方关系、让大家“协同共生”的新架构。",
+          "action": "花时间梳理部门历史和每个人的利益诉求，构建一个能平衡各方关系、让大家“协同共生”的新架构。",
+          "weights": {
+            "cognitivePath": -1,
+            "driveSource": 0,
+            "cognitiveTempo": 1,
+            "valueOrientation": -1
+          }
+        },
+        {
+          "id": "q03-3",
+          "label": "直接挑出几个最明显阻碍效率的“毒瘤”环节或人员，以雷霆手段快速清除，树立威信。",
+          "action": "直接挑出几个最明显阻碍效率的“毒瘤”环节或人员，以雷霆手段快速清除，树立威信。",
+          "weights": {
+            "cognitivePath": 1,
+            "driveSource": 0,
+            "cognitiveTempo": -1,
+            "valueOrientation": 1
+          }
+        }
+      ]
+    },
+    {
+      "id": "q04",
+      "order": 4,
+      "tag": "危机与破局",
+      "title": "危机与破局",
+      "prompt": "在一个重要的商业谈判中，对方提出了一个看似合理但隐含苛刻条件的方案，要求你当场表态。你会：",
+      "options": [
+        {
+          "id": "q04-0",
+          "label": "凭借多年的江湖经验和对对方底线的直觉判断，当场抛出一个极具压迫感的反制方案，打乱对方的节奏。",
+          "action": "凭借多年的江湖经验和对对方底线的直觉判断，当场抛出一个极具压迫感的反制方案，打乱对方的节奏。",
+          "weights": {
+            "cognitivePath": 0,
+            "driveSource": -1,
+            "cognitiveTempo": -1,
+            "valueOrientation": 1
+          }
+        },
+        {
+          "id": "q04-1",
+          "label": "礼貌地暂停会议，要求对方提供每一项条款背后的具体测算逻辑，逐条拆解其合理性。",
+          "action": "礼貌地暂停会议，要求对方提供每一项条款背后的具体测算逻辑，逐条拆解其合理性。",
+          "weights": {
+            "cognitivePath": 1,
+            "driveSource": 1,
+            "cognitiveTempo": 1,
+            "valueOrientation": 0
+          }
+        },
+        {
+          "id": "q04-2",
+          "label": "绕开具体条款的争论，把话题拉回到双方合作的长期愿景和共同价值观上，试图在更高维度达成共识。",
+          "action": "绕开具体条款的争论，把话题拉回到双方合作的长期愿景和共同价值观上，试图在更高维度达成共识。",
+          "weights": {
+            "cognitivePath": -1,
+            "driveSource": -1,
+            "cognitiveTempo": 0,
+            "valueOrientation": -1
+          }
+        },
+        {
+          "id": "q04-3",
+          "label": "快速计算出妥协的成本与收益，如果整体ROI划算，当场拍板成交，绝不为了细枝末节浪费时间。",
+          "action": "快速计算出妥协的成本与收益，如果整体ROI划算，当场拍板成交，绝不为了细枝末节浪费时间。",
+          "weights": {
+            "cognitivePath": 0,
+            "driveSource": 1,
+            "cognitiveTempo": -1,
+            "valueOrientation": 1
+          }
+        }
+      ]
+    },
+    {
+      "id": "q05",
+      "order": 5,
+      "tag": "危机与破局",
+      "title": "危机与破局",
+      "prompt": "你被任命为一个陷入舆论风波的公众事件的调查组长，面对铺天盖地的猜测和情绪化的指责，你的调查切入点是：",
+      "options": [
+        {
+          "id": "q05-0",
+          "label": "抛开所有道德评判，用最严密的逻辑链条和确凿的数据证据，还原事件最真实的物理过程。",
+          "action": "抛开所有道德评判，用最严密的逻辑链条和确凿的数据证据，还原事件最真实的物理过程。",
+          "weights": {
+            "cognitivePath": 1,
+            "driveSource": 1,
+            "cognitiveTempo": 0,
+            "valueOrientation": 1
+          }
+        },
+        {
+          "id": "q05-1",
+          "label": "深入挖掘事件背后隐藏的社会结构问题和人性弱点，写出一份具有深刻批判性和反思价值的报告。",
+          "action": "深入挖掘事件背后隐藏的社会结构问题和人性弱点，写出一份具有深刻批判性和反思价值的报告。",
+          "weights": {
+            "cognitivePath": 1,
+            "driveSource": 0,
+            "cognitiveTempo": 1,
+            "valueOrientation": -1
+          }
+        },
+        {
+          "id": "q05-2",
+          "label": "敏锐捕捉公众情绪的焦点，用一种极具同理心和共情力的方式发声，首先安抚受害者的创伤。",
+          "action": "敏锐捕捉公众情绪的焦点，用一种极具同理心和共情力的方式发声，首先安抚受害者的创伤。",
+          "weights": {
+            "cognitivePath": 0,
+            "driveSource": -1,
+            "cognitiveTempo": -1,
+            "valueOrientation": -1
+          }
+        },
+        {
+          "id": "q05-3",
+          "label": "将事件置于更宏大的历史和文化背景下，探讨它对未来文明走向的启示，试图建立一种新的共识。",
+          "action": "将事件置于更宏大的历史和文化背景下，探讨它对未来文明走向的启示，试图建立一种新的共识。",
+          "weights": {
+            "cognitivePath": -1,
+            "driveSource": 1,
+            "cognitiveTempo": 0,
+            "valueOrientation": -1
+          }
+        }
+      ]
+    },
+    {
+      "id": "q06",
+      "order": 6,
+      "tag": "危机与破局",
+      "title": "危机与破局",
+      "prompt": "你正在构思一部可能耗时数年的重量级作品（如小说、电影或开源软件）。在动笔前，你最看重的是：",
+      "options": [
+        {
+          "id": "q06-0",
+          "label": "建立一个无懈可击的世界观设定或底层架构，确保所有细节都能在这个系统中自洽运转。",
+          "action": "建立一个无懈可击的世界观设定或底层架构，确保所有细节都能在这个系统中自洽运转。",
+          "weights": {
+            "cognitivePath": -1,
+            "driveSource": 1,
+            "cognitiveTempo": 1,
+            "valueOrientation": 0
+          }
+        },
+        {
+          "id": "q06-1",
+          "label": "捕捉到那个让你灵魂战栗的核心意象或隐喻，哪怕它现在还很模糊，你也愿意追随这种直觉深入探索。",
+          "action": "捕捉到那个让你灵魂战栗的核心意象或隐喻，哪怕它现在还很模糊，你也愿意追随这种直觉深入探索。",
+          "weights": {
+            "cognitivePath": 0,
+            "driveSource": -1,
+            "cognitiveTempo": 1,
+            "valueOrientation": -1
+          }
+        },
+        {
+          "id": "q06-2",
+          "label": "找到一个颠覆现有行业范式的切入点，思考如何用最锋利的方式解构传统，并带来实际的冲击。",
+          "action": "找到一个颠覆现有行业范式的切入点，思考如何用最锋利的方式解构传统，并带来实际的冲击。",
+          "weights": {
+            "cognitivePath": 1,
+            "driveSource": -1,
+            "cognitiveTempo": 0,
+            "valueOrientation": 1
+          }
+        },
+        {
+          "id": "q06-3",
+          "label": "不做过多预设，先写出第一版原型或草稿，放到公众视野中接受检验，在互动中不断迭代生长。",
+          "action": "不做过多预设，先写出第一版原型或草稿，放到公众视野中接受检验，在互动中不断迭代生长。",
+          "weights": {
+            "cognitivePath": -1,
+            "driveSource": 0,
+            "cognitiveTempo": -1,
+            "valueOrientation": 1
+          }
+        }
+      ]
+    },
+    {
+      "id": "q07",
+      "order": 7,
+      "tag": "决策与发展",
+      "title": "决策与发展",
+      "prompt": "你发现了一个处于蓝海阶段的新兴市场机会，但目前没有任何成熟的商业模式可供参考。你会：",
+      "options": [
+        {
+          "id": "q07-0",
+          "label": "凭借敏锐的嗅觉，立刻注册品牌、拉起团队，用最野蛮生长的方式先占领山头，在战争中学习战争。",
+          "action": "凭借敏锐的嗅觉，立刻注册品牌、拉起团队，用最野蛮生长的方式先占领山头，在战争中学习战争。",
+          "weights": {
+            "cognitivePath": 0,
+            "driveSource": -1,
+            "cognitiveTempo": -1,
+            "valueOrientation": 1
+          }
+        },
+        {
+          "id": "q07-1",
+          "label": "退后一步，花大量时间研究该领域的底层物理规律或技术演进逻辑，直到推导出一条绝对正确的必然路径。",
+          "action": "退后一步，花大量时间研究该领域的底层物理规律或技术演进逻辑，直到推导出一条绝对正确的必然路径。",
+          "weights": {
+            "cognitivePath": 1,
+            "driveSource": 1,
+            "cognitiveTempo": 1,
+            "valueOrientation": 0
+          }
+        },
+        {
+          "id": "q07-2",
+          "label": "构思一个能将供应商、创作者和用户全部卷入、让所有参与者共同受益的庞大生态蓝图，耐心搭建基础设施。",
+          "action": "构思一个能将供应商、创作者和用户全部卷入、让所有参与者共同受益的庞大生态蓝图，耐心搭建基础设施。",
+          "weights": {
+            "cognitivePath": -1,
+            "driveSource": 0,
+            "cognitiveTempo": 1,
+            "valueOrientation": -1
+          }
+        },
+        {
+          "id": "q07-3",
+          "label": "用极低的成本快速做出一个能跑通核心逻辑的MVP（最小可行性产品），放到市场上测试真实反馈。",
+          "action": "用极低的成本快速做出一个能跑通核心逻辑的MVP（最小可行性产品），放到市场上测试真实反馈。",
+          "weights": {
+            "cognitivePath": 1,
+            "driveSource": 1,
+            "cognitiveTempo": -1,
+            "valueOrientation": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": "q08",
+      "order": 8,
+      "tag": "决策与发展",
+      "title": "决策与发展",
+      "prompt": "你的团队正在讨论明年的战略方向，出现了两种截然不同的声音，且各自都有合理的论据。作为决策者，你会：",
+      "options": [
+        {
+          "id": "q08-0",
+          "label": "引导大家跳出非此即彼的争论，寻找一个能包容这两种声音的更高维度的系统性框架。",
+          "action": "引导大家跳出非此即彼的争论，寻找一个能包容这两种声音的更高维度的系统性框架。",
+          "weights": {
+            "cognitivePath": -1,
+            "driveSource": 1,
+            "cognitiveTempo": 1,
+            "valueOrientation": 0
+          }
+        },
+        {
+          "id": "q08-1",
+          "label": "不再纠结于论证，直接给两个方向各拨一小笔预算，让团队进行内部赛马，用最终的实战结果说话。",
+          "action": "不再纠结于论证，直接给两个方向各拨一小笔预算，让团队进行内部赛马，用最终的实战结果说话。",
+          "weights": {
+            "cognitivePath": 1,
+            "driveSource": 0,
+            "cognitiveTempo": -1,
+            "valueOrientation": 1
+          }
+        },
+        {
+          "id": "q08-2",
+          "label": "剥离掉所有华丽的PPT包装，连续追问“为什么”，逼迫大家回到最本源的需求和常识上来。",
+          "action": "剥离掉所有华丽的PPT包装，连续追问“为什么”，逼迫大家回到最本源的需求和常识上来。",
+          "weights": {
+            "cognitivePath": 1,
+            "driveSource": 1,
+            "cognitiveTempo": 1,
+            "valueOrientation": 0
+          }
+        },
+        {
+          "id": "q08-3",
+          "label": "相信自己作为领导者的直觉判断，果断拍板选择那个让你感到“兴奋和有生命力”的方向，并承担全部责任。",
+          "action": "相信自己作为领导者的直觉判断，果断拍板选择那个让你感到“兴奋和有生命力”的方向，并承担全部责任。",
+          "weights": {
+            "cognitivePath": 0,
+            "driveSource": -1,
+            "cognitiveTempo": -1,
+            "valueOrientation": -1
+          }
+        }
+      ]
+    },
+    {
+      "id": "q09",
+      "order": 9,
+      "tag": "决策与发展",
+      "title": "决策与发展",
+      "prompt": "你获得了一笔丰厚的奖金，打算用它来提升自己的认知水平。你最倾向于选择哪种方式？",
+      "options": [
+        {
+          "id": "q09-0",
+          "label": "报名参加顶尖的跨学科思维模型课程，系统性地学习不同领域的底层逻辑和分析工具。",
+          "action": "报名参加顶尖的跨学科思维模型课程，系统性地学习不同领域的底层逻辑和分析工具。",
+          "weights": {
+            "cognitivePath": -1,
+            "driveSource": 1,
+            "cognitiveTempo": 1,
+            "valueOrientation": 0
+          }
+        },
+        {
+          "id": "q09-1",
+          "label": "来一场没有明确目的地的漫游旅行，去感受不同文化下人们真实的生活状态，寻找内心的触动。",
+          "action": "来一场没有明确目的地的漫游旅行，去感受不同文化下人们真实的生活状态，寻找内心的触动。",
+          "weights": {
+            "cognitivePath": 0,
+            "driveSource": -1,
+            "cognitiveTempo": 1,
+            "valueOrientation": -1
+          }
+        },
+        {
+          "id": "q09-2",
+          "label": "把钱投入到一个高风险、高回报的小型实战项目中，亲自下场操盘，用真金白银买教训。",
+          "action": "把钱投入到一个高风险、高回报的小型实战项目中，亲自下场操盘，用真金白银买教训。",
+          "weights": {
+            "cognitivePath": 0,
+            "driveSource": -1,
+            "cognitiveTempo": -1,
+            "valueOrientation": 1
+          }
+        },
+        {
+          "id": "q09-3",
+          "label": "购买大量的硬核专业书籍和数据报告，闭关研读，直到把自己变成某个垂直领域的绝对专家。",
+          "action": "购买大量的硬核专业书籍和数据报告，闭关研读，直到把自己变成某个垂直领域的绝对专家。",
+          "weights": {
+            "cognitivePath": 1,
+            "driveSource": 1,
+            "cognitiveTempo": 1,
+            "valueOrientation": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": "q10",
+      "order": 10,
+      "tag": "决策与发展",
+      "title": "决策与发展",
+      "prompt": "在一次行业峰会上，一位权威专家发表了对未来趋势的断言，大部分人都深表赞同，但你觉得有些不对劲。你会：",
+      "options": [
+        {
+          "id": "q10-0",
+          "label": "运用苏格拉底式的追问，当众指出其逻辑推导过程中的漏洞和未经验证的前提假设。",
+          "action": "运用苏格拉底式的追问，当众指出其逻辑推导过程中的漏洞和未经验证的前提假设。",
+          "weights": {
+            "cognitivePath": 1,
+            "driveSource": 1,
+            "cognitiveTempo": 0,
+            "valueOrientation": -1
+          }
+        },
+        {
+          "id": "q10-1",
+          "label": "在脑海中快速构建一个相反的系统模型，看看是否能推导出另一种同样合理的未来图景。",
+          "action": "在脑海中快速构建一个相反的系统模型，看看是否能推导出另一种同样合理的未来图景。",
+          "weights": {
+            "cognitivePath": -1,
+            "driveSource": 1,
+            "cognitiveTempo": 1,
+            "valueOrientation": 0
+          }
+        },
+        {
+          "id": "q10-2",
+          "label": "相信自己的直觉判断，回去后立刻调整公司的战略布局，反其道而行之，试图抢占先机。",
+          "action": "相信自己的直觉判断，回去后立刻调整公司的战略布局，反其道而行之，试图抢占先机。",
+          "weights": {
+            "cognitivePath": 0,
+            "driveSource": -1,
+            "cognitiveTempo": -1,
+            "valueOrientation": 1
+          }
+        },
+        {
+          "id": "q10-3",
+          "label": "用幽默和自嘲的方式，在社交媒体上解构这位专家的宏大叙事，表达对普通人真实生活的关注。",
+          "action": "用幽默和自嘲的方式，在社交媒体上解构这位专家的宏大叙事，表达对普通人真实生活的关注。",
+          "weights": {
+            "cognitivePath": 1,
+            "driveSource": -1,
+            "cognitiveTempo": 0,
+            "valueOrientation": -1
+          }
+        }
+      ]
+    },
+    {
+      "id": "q11",
+      "order": 11,
+      "tag": "决策与发展",
+      "title": "决策与发展",
+      "prompt": "你正在设计一款面向大众的消费级产品。在权衡各种功能时，你的核心设计哲学是：",
+      "options": [
+        {
+          "id": "q11-0",
+          "label": "极简主义。反复推敲和打磨，砍掉一切不必要的功能，只保留最核心的价值，做到极致的纯粹和优雅。",
+          "action": "极简主义。反复推敲和打磨，砍掉一切不必要的功能，只保留最核心的价值，做到极致的纯粹和优雅。",
+          "weights": {
+            "cognitivePath": 1,
+            "driveSource": -1,
+            "cognitiveTempo": 1,
+            "valueOrientation": 0
+          }
+        },
+        {
+          "id": "q11-1",
+          "label": "体验至上。打造一个能让用户在其中产生强烈情感共鸣和沉浸感的完整生活方式。",
+          "action": "体验至上。打造一个能让用户在其中产生强烈情感共鸣和沉浸感的完整生活方式。",
+          "weights": {
+            "cognitivePath": -1,
+            "driveSource": -1,
+            "cognitiveTempo": 0,
+            "valueOrientation": -1
+          }
+        },
+        {
+          "id": "q11-2",
+          "label": "效率优先。通过严密的数据分析，确保用户能以最短的路径、最少的操作完成任务。",
+          "action": "效率优先。通过严密的数据分析，确保用户能以最短的路径、最少的操作完成任务。",
+          "weights": {
+            "cognitivePath": 1,
+            "driveSource": 1,
+            "cognitiveTempo": -1,
+            "valueOrientation": 0
+          }
+        },
+        {
+          "id": "q11-3",
+          "label": "生态思维。设计开放的接口和规则，鼓励用户在平台上自由创造，让产品自己生长。",
+          "action": "生态思维。设计开放的接口和规则，鼓励用户在平台上自由创造，让产品自己生长。",
+          "weights": {
+            "cognitivePath": -1,
+            "driveSource": -1,
+            "cognitiveTempo": 0,
+            "valueOrientation": 1
+          }
+        }
+      ]
+    },
+    {
+      "id": "q12",
+      "order": 12,
+      "tag": "决策与发展",
+      "title": "决策与发展",
+      "prompt": "面对人生中那些看似无法解决的重大矛盾（如事业与家庭的冲突、理想与现实的差距），你通常的应对机制是：",
+      "options": [
+        {
+          "id": "q12-0",
+          "label": "将矛盾拆解为一个个具体的可操作项，通过精密的日程管理和资源调配，寻找最优的妥协解。",
+          "action": "将矛盾拆解为一个个具体的可操作项，通过精密的日程管理和资源调配，寻找最优的妥协解。",
+          "weights": {
+            "cognitivePath": 1,
+            "driveSource": 1,
+            "cognitiveTempo": 0,
+            "valueOrientation": 1
+          }
+        },
+        {
+          "id": "q12-1",
+          "label": "接受这种荒谬感，用一种超越世俗的哲学视角或艺术表达来升华这种痛苦，寻求内心的和解。",
+          "action": "接受这种荒谬感，用一种超越世俗的哲学视角或艺术表达来升华这种痛苦，寻求内心的和解。",
+          "weights": {
+            "cognitivePath": 0,
+            "driveSource": -1,
+            "cognitiveTempo": 1,
+            "valueOrientation": -1
+          }
+        },
+        {
+          "id": "q12-2",
+          "label": "构建一套属于自己的长期主义价值观体系，只要方向是对的，愿意忍受漫长的煎熬和等待。",
+          "action": "构建一套属于自己的长期主义价值观体系，只要方向是对的，愿意忍受漫长的煎熬和等待。",
+          "weights": {
+            "cognitivePath": -1,
+            "driveSource": 0,
+            "cognitiveTempo": 1,
+            "valueOrientation": 1
+          }
+        },
+        {
+          "id": "q12-3",
+          "label": "不去深究终极意义，立刻投身于眼前最迫切的具体行动中，在忙碌中消解焦虑。",
+          "action": "不去深究终极意义，立刻投身于眼前最迫切的具体行动中，在忙碌中消解焦虑。",
+          "weights": {
+            "cognitivePath": 0,
+            "driveSource": 1,
+            "cognitiveTempo": -1,
+            "valueOrientation": 1
+          }
+        }
+      ]
+    },
+    {
+      "id": "q13",
+      "order": 13,
+      "tag": "人际与团队",
+      "title": "人际与团队",
+      "prompt": "你的合伙人突然提出要离开团队，这可能会导致项目停滞。在挽留无果的情况下，你会：",
+      "options": [
+        {
+          "id": "q13-0",
+          "label": "迅速盘点他带走的核心资源和技术，连夜制定应对预案，将损失降到最低。",
+          "action": "迅速盘点他带走的核心资源和技术，连夜制定应对预案，将损失降到最低。",
+          "weights": {
+            "cognitivePath": 1,
+            "driveSource": 1,
+            "cognitiveTempo": -1,
+            "valueOrientation": 0
+          }
+        },
+        {
+          "id": "q13-1",
+          "label": "深入反思这次散伙背后的深层组织机制问题，思考如何构建一个更稳固的合伙人筛选系统。",
+          "action": "深入反思这次散伙背后的深层组织机制问题，思考如何构建一个更稳固的合伙人筛选系统。",
+          "weights": {
+            "cognitivePath": -1,
+            "driveSource": 1,
+            "cognitiveTempo": 1,
+            "valueOrientation": 0
+          }
+        },
+        {
+          "id": "q13-2",
+          "label": "坦诚地与他进行一次深度的情感交流，理解他的真实苦衷，好聚好散，保留未来合作的可能。",
+          "action": "坦诚地与他进行一次深度的情感交流，理解他的真实苦衷，好聚好散，保留未来合作的可能。",
+          "weights": {
+            "cognitivePath": 0,
+            "driveSource": -1,
+            "cognitiveTempo": 1,
+            "valueOrientation": -1
+          }
+        },
+        {
+          "id": "q13-3",
+          "label": "凭直觉快速锁定几个潜在的替代人选，立刻展开猛烈的攻势，试图用更强的力量填补空缺。",
+          "action": "凭直觉快速锁定几个潜在的替代人选，立刻展开猛烈的攻势，试图用更强的力量填补空缺。",
+          "weights": {
+            "cognitivePath": 0,
+            "driveSource": -1,
+            "cognitiveTempo": -1,
+            "valueOrientation": 1
+          }
+        }
+      ]
+    },
+    {
+      "id": "q14",
+      "order": 14,
+      "tag": "人际与团队",
+      "title": "人际与团队",
+      "prompt": "在一个跨部门协作的项目中，其他部门的负责人总是以各种理由推诿扯皮。为了推进进度，你会：",
+      "options": [
+        {
+          "id": "q14-0",
+          "label": "越过他直接找到他的上级或相关利益方，用强硬的手段和不可辩驳的逻辑打破僵局。",
+          "action": "越过他直接找到他的上级或相关利益方，用强硬的手段和不可辩驳的逻辑打破僵局。",
+          "weights": {
+            "cognitivePath": 1,
+            "driveSource": 1,
+            "cognitiveTempo": -1,
+            "valueOrientation": 0
+          }
+        },
+        {
+          "id": "q14-1",
+          "label": "仔细分析各部门的KPI和利益诉求，重新设计一套能让大家“利益均沾”的合作规则。",
+          "action": "仔细分析各部门的KPI和利益诉求，重新设计一套能让大家“利益均沾”的合作规则。",
+          "weights": {
+            "cognitivePath": -1,
+            "driveSource": 1,
+            "cognitiveTempo": 0,
+            "valueOrientation": 1
+          }
+        },
+        {
+          "id": "q14-2",
+          "label": "私下约他喝茶聊天，通过非正式的沟通建立信任，寻找情感上的共鸣点来化解对抗。",
+          "action": "私下约他喝茶聊天，通过非正式的沟通建立信任，寻找情感上的共鸣点来化解对抗。",
+          "weights": {
+            "cognitivePath": 0,
+            "driveSource": -1,
+            "cognitiveTempo": 1,
+            "valueOrientation": -1
+          }
+        },
+        {
+          "id": "q14-3",
+          "label": "绕开繁文缛节，带着自己的小团队用最快速度把核心模块做出来，用既成事实倒逼他们配合。",
+          "action": "绕开繁文缛节，带着自己的小团队用最快速度把核心模块做出来，用既成事实倒逼他们配合。",
+          "weights": {
+            "cognitivePath": 1,
+            "driveSource": 0,
+            "cognitiveTempo": -1,
+            "valueOrientation": 1
+          }
+        }
+      ]
+    },
+    {
+      "id": "q15",
+      "order": 15,
+      "tag": "人际与团队",
+      "title": "人际与团队",
+      "prompt": "你正在面试一位履历极其光鲜的候选人，但他在回答问题时总是喜欢使用宏大的词汇和空泛的概念。你会：",
+      "options": [
+        {
+          "id": "q15-0",
+          "label": "不断打断他，要求他将那些大词拆解为具体的操作步骤和底层逻辑，看他是否真的懂。",
+          "action": "不断打断他，要求他将那些大词拆解为具体的操作步骤和底层逻辑，看他是否真的懂。",
+          "weights": {
+            "cognitivePath": 1,
+            "driveSource": 1,
+            "cognitiveTempo": 1,
+            "valueOrientation": 0
+          }
+        },
+        {
+          "id": "q15-1",
+          "label": "顺着他的宏大叙事，考察他是否真的构建了一套逻辑严密、自圆其说的理论体系。",
+          "action": "顺着他的宏大叙事，考察他是否真的构建了一套逻辑严密、自圆其说的理论体系。",
+          "weights": {
+            "cognitivePath": -1,
+            "driveSource": 1,
+            "cognitiveTempo": 1,
+            "valueOrientation": 0
+          }
+        },
+        {
+          "id": "q15-2",
+          "label": "抛开他的言辞，凭直觉感知他的气场、眼神和底层欲望，判断他是否具备成事的“野性”。",
+          "action": "抛开他的言辞，凭直觉感知他的气场、眼神和底层欲望，判断他是否具备成事的“野性”。",
+          "weights": {
+            "cognitivePath": 0,
+            "driveSource": -1,
+            "cognitiveTempo": -1,
+            "valueOrientation": 1
+          }
+        },
+        {
+          "id": "q15-3",
+          "label": "引导他分享一些真实的失败经历和内心挣扎，观察他是否具备真实的同理心和反思能力。",
+          "action": "引导他分享一些真实的失败经历和内心挣扎，观察他是否具备真实的同理心和反思能力。",
+          "weights": {
+            "cognitivePath": 0,
+            "driveSource": -1,
+            "cognitiveTempo": 1,
+            "valueOrientation": -1
+          }
+        }
+      ]
+    },
+    {
+      "id": "q16",
+      "order": 16,
+      "tag": "人际与团队",
+      "title": "人际与团队",
+      "prompt": "团队在经历了一次重大的挫折后士气低落，大家都在互相指责。作为领导者，你召开复盘会的首要目的是：",
+      "options": [
+        {
+          "id": "q16-0",
+          "label": "像法医解剖一样，冷酷而精准地拆解每一个导致失败的环节，找出最根本的技术或流程原因。",
+          "action": "像法医解剖一样，冷酷而精准地拆解每一个导致失败的环节，找出最根本的技术或流程原因。",
+          "weights": {
+            "cognitivePath": 1,
+            "driveSource": 1,
+            "cognitiveTempo": 1,
+            "valueOrientation": 0
+          }
+        },
+        {
+          "id": "q16-1",
+          "label": "引导大家反思我们在整个行业生态中的位置是否出现了偏差，探讨如何重构我们的护城河。",
+          "action": "引导大家反思我们在整个行业生态中的位置是否出现了偏差，探讨如何重构我们的护城河。",
+          "weights": {
+            "cognitivePath": -1,
+            "driveSource": 1,
+            "cognitiveTempo": 1,
+            "valueOrientation": 0
+          }
+        },
+        {
+          "id": "q16-2",
+          "label": "创造一个安全的空间，让大家尽情宣泄情绪，然后用一个更宏大的使命感重新凝聚人心。",
+          "action": "创造一个安全的空间，让大家尽情宣泄情绪，然后用一个更宏大的使命感重新凝聚人心。",
+          "weights": {
+            "cognitivePath": -1,
+            "driveSource": -1,
+            "cognitiveTempo": 0,
+            "valueOrientation": -1
+          }
+        },
+        {
+          "id": "q16-3",
+          "label": "迅速结束抱怨，当场布置几个能立刻见效的短期任务，用一场小胜利来重振团队的信心。",
+          "action": "迅速结束抱怨，当场布置几个能立刻见效的短期任务，用一场小胜利来重振团队的信心。",
+          "weights": {
+            "cognitivePath": 1,
+            "driveSource": 0,
+            "cognitiveTempo": -1,
+            "valueOrientation": 1
+          }
+        }
+      ]
+    },
+    {
+      "id": "q17",
+      "order": 17,
+      "tag": "人际与团队",
+      "title": "人际与团队",
+      "prompt": "你受邀在一所大学做一场关于“未来”的主题演讲。你的演讲风格和内容重点会是：",
+      "options": [
+        {
+          "id": "q17-0",
+          "label": "用严密的数据推演和物理学定律，解构那些看似不可思议的未来科技，告诉学生们一切皆可计算。",
+          "action": "用严密的数据推演和物理学定律，解构那些看似不可思议的未来科技，告诉学生们一切皆可计算。",
+          "weights": {
+            "cognitivePath": 1,
+            "driveSource": 1,
+            "cognitiveTempo": 0,
+            "valueOrientation": 1
+          }
+        },
+        {
+          "id": "q17-1",
+          "label": "描绘一幅宏大的人类文明演进图景，带领学生慢下来，深入探讨技术变革下人类社会的伦理困境和制度重建。",
+          "action": "描绘一幅宏大的人类文明演进图景，带领学生慢下来，深入探讨技术变革下人类社会的伦理困境和制度重建。",
+          "weights": {
+            "cognitivePath": -1,
+            "driveSource": 0,
+            "cognitiveTempo": 1,
+            "valueOrientation": -1
+          }
+        },
+        {
+          "id": "q17-2",
+          "label": "分享自己人生中那些凭借直觉做出的关键抉择和踩过的坑，鼓励学生们别想太多，先干起来再说。",
+          "action": "分享自己人生中那些凭借直觉做出的关键抉择和踩过的坑，鼓励学生们别想太多，先干起来再说。",
+          "weights": {
+            "cognitivePath": 0,
+            "driveSource": -1,
+            "cognitiveTempo": -1,
+            "valueOrientation": 1
+          }
+        },
+        {
+          "id": "q17-3",
+          "label": "用幽默、自嘲和极具张力的语言，解构所谓的“成功学”，表达对个体自由和生命体验的极致推崇。",
+          "action": "用幽默、自嘲和极具张力的语言，解构所谓的“成功学”，表达对个体自由和生命体验的极致推崇。",
+          "weights": {
+            "cognitivePath": 1,
+            "driveSource": -1,
+            "cognitiveTempo": 0,
+            "valueOrientation": -1
+          }
+        }
+      ]
+    },
+    {
+      "id": "q18",
+      "order": 18,
+      "tag": "人际与团队",
+      "title": "人际与团队",
+      "prompt": "你的朋友向你抱怨他的生活陷入了停滞和无意义感。你最有可能给出的建议是：",
+      "options": [
+        {
+          "id": "q18-0",
+          "label": "建议他立刻开始一项具体的技能学习或副业尝试，用微小的行动和正反馈来打破僵局。",
+          "action": "建议他立刻开始一项具体的技能学习或副业尝试，用微小的行动和正反馈来打破僵局。",
+          "weights": {
+            "cognitivePath": 1,
+            "driveSource": 0,
+            "cognitiveTempo": -1,
+            "valueOrientation": 1
+          }
+        },
+        {
+          "id": "q18-1",
+          "label": "帮他梳理人生的底层价值观，鼓励他构建一套属于自己的“生活原则系统”来抵御外界的混乱。",
+          "action": "帮他梳理人生的底层价值观，鼓励他构建一套属于自己的“生活原则系统”来抵御外界的混乱。",
+          "weights": {
+            "cognitivePath": -1,
+            "driveSource": 1,
+            "cognitiveTempo": 1,
+            "valueOrientation": 0
+          }
+        },
+        {
+          "id": "q18-2",
+          "label": "推荐他去接触一些深邃的文学、哲学或艺术作品，在对人类普遍困境的共鸣中寻找灵魂的解脱。",
+          "action": "推荐他去接触一些深邃的文学、哲学或艺术作品，在对人类普遍困境的共鸣中寻找灵魂的解脱。",
+          "weights": {
+            "cognitivePath": 0,
+            "driveSource": -1,
+            "cognitiveTempo": 1,
+            "valueOrientation": -1
+          }
+        },
+        {
+          "id": "q18-3",
+          "label": "告诉他“意义”本身就是一种幻觉，不如彻底放下包袱，用一种戏谑和轻松的态度去体验当下。",
+          "action": "告诉他“意义”本身就是一种幻觉，不如彻底放下包袱，用一种戏谑和轻松的态度去体验当下。",
+          "weights": {
+            "cognitivePath": 1,
+            "driveSource": -1,
+            "cognitiveTempo": 0,
+            "valueOrientation": -1
+          }
+        }
+      ]
+    },
+    {
+      "id": "q19",
+      "order": 19,
+      "tag": "认知与探索",
+      "title": "认知与探索",
+      "prompt": "当你面对一个完全陌生的复杂领域（如量子计算或加密货币）并需要快速掌握时，你的学习策略是：",
+      "options": [
+        {
+          "id": "q19-0",
+          "label": "找到该领域最底层的几个核心概念，不断追问“为什么”，直到能用自己的话清晰地解释它们。",
+          "action": "找到该领域最底层的几个核心概念，不断追问“为什么”，直到能用自己的话清晰地解释它们。",
+          "weights": {
+            "cognitivePath": 1,
+            "driveSource": 1,
+            "cognitiveTempo": 1,
+            "valueOrientation": 0
+          }
+        },
+        {
+          "id": "q19-1",
+          "label": "搜集大量的案例、图表和发展历史，不求急用，先拼凑出这个领域在人类文明和科技生态中的演进脉络。",
+          "action": "搜集大量的案例、图表和发展历史，不求急用，先拼凑出这个领域在人类文明和科技生态中的演进脉络。",
+          "weights": {
+            "cognitivePath": -1,
+            "driveSource": 0,
+            "cognitiveTempo": 1,
+            "valueOrientation": -1
+          }
+        },
+        {
+          "id": "q19-2",
+          "label": "凭直觉找到这个领域里最顶尖、最有趣的人，直接观察他们的行为模式，甚至模仿他们的思考方式。",
+          "action": "凭直觉找到这个领域里最顶尖、最有趣的人，直接观察他们的行为模式，甚至模仿他们的思考方式。",
+          "weights": {
+            "cognitivePath": 0,
+            "driveSource": -1,
+            "cognitiveTempo": -1,
+            "valueOrientation": 1
+          }
+        },
+        {
+          "id": "q19-3",
+          "label": "毫不犹豫地投入一笔钱去购买相关的资产或设备，在真实的交易和操作中感受它的运作逻辑。",
+          "action": "毫不犹豫地投入一笔钱去购买相关的资产或设备，在真实的交易和操作中感受它的运作逻辑。",
+          "weights": {
+            "cognitivePath": 1,
+            "driveSource": 0,
+            "cognitiveTempo": -1,
+            "valueOrientation": 1
+          }
+        }
+      ]
+    },
+    {
+      "id": "q20",
+      "order": 20,
+      "tag": "认知与探索",
+      "title": "认知与探索",
+      "prompt": "你认为，人类社会发展至今，推动历史前进的最核心动力是：",
+      "options": [
+        {
+          "id": "q20-0",
+          "label": "严密的科学发现、技术革命以及随之而来的生产效率的极致提升。",
+          "action": "严密的科学发现、技术革命以及随之而来的生产效率的极致提升。",
+          "weights": {
+            "cognitivePath": 1,
+            "driveSource": 1,
+            "cognitiveTempo": 0,
+            "valueOrientation": 1
+          }
+        },
+        {
+          "id": "q20-1",
+          "label": "宏大的思想体系、制度创新以及对人类文明走向的系统性建构。",
+          "action": "宏大的思想体系、制度创新以及对人类文明走向的系统性建构。",
+          "weights": {
+            "cognitivePath": -1,
+            "driveSource": 1,
+            "cognitiveTempo": 0,
+            "valueOrientation": -1
+          }
+        },
+        {
+          "id": "q20-2",
+          "label": "少数天才不可思议的直觉洞察、艺术创造力以及对人类情感深度的不断挖掘。",
+          "action": "少数天才不可思议的直觉洞察、艺术创造力以及对人类情感深度的不断挖掘。",
+          "weights": {
+            "cognitivePath": 0,
+            "driveSource": -1,
+            "cognitiveTempo": 1,
+            "valueOrientation": -1
+          }
+        },
+        {
+          "id": "q20-3",
+          "label": "那些敢于打破常规、无视规则的冒险家们在混乱中快速试错和野蛮生长的力量。",
+          "action": "那些敢于打破常规、无视规则的冒险家们在混乱中快速试错和野蛮生长的力量。",
+          "weights": {
+            "cognitivePath": 0,
+            "driveSource": -1,
+            "cognitiveTempo": -1,
+            "valueOrientation": 1
+          }
+        }
+      ]
+    },
+    {
+      "id": "q21",
+      "order": 21,
+      "tag": "认知与探索",
+      "title": "认知与探索",
+      "prompt": "在评价一部备受争议的先锋电影时，你最看重的维度是：",
+      "options": [
+        {
+          "id": "q21-0",
+          "label": "它的叙事结构是否严密，逻辑推演是否自洽，是否在技术层面实现了对传统电影语言的突破。",
+          "action": "它的叙事结构是否严密，逻辑推演是否自洽，是否在技术层面实现了对传统电影语言的突破。",
+          "weights": {
+            "cognitivePath": 1,
+            "driveSource": 1,
+            "cognitiveTempo": 1,
+            "valueOrientation": 0
+          }
+        },
+        {
+          "id": "q21-1",
+          "label": "它是否深刻地反映了某个时代的社会心理结构，是否具有宏大的历史隐喻和文明反思价值。",
+          "action": "它是否深刻地反映了某个时代的社会心理结构，是否具有宏大的历史隐喻和文明反思价值。",
+          "weights": {
+            "cognitivePath": -1,
+            "driveSource": 1,
+            "cognitiveTempo": 0,
+            "valueOrientation": -1
+          }
+        },
+        {
+          "id": "q21-2",
+          "label": "它在视觉、听觉上是否带来了极致的感官冲击，是否能瞬间击中观众潜意识深处的某种情绪。",
+          "action": "它在视觉、听觉上是否带来了极致的感官冲击，是否能瞬间击中观众潜意识深处的某种情绪。",
+          "weights": {
+            "cognitivePath": 0,
+            "driveSource": -1,
+            "cognitiveTempo": -1,
+            "valueOrientation": -1
+          }
+        },
+        {
+          "id": "q21-3",
+          "label": "它的票房表现如何，是否成功地创造了一种新的商业模式或引发了大规模的流行文化狂欢。",
+          "action": "它的票房表现如何，是否成功地创造了一种新的商业模式或引发了大规模的流行文化狂欢。",
+          "weights": {
+            "cognitivePath": -1,
+            "driveSource": -1,
+            "cognitiveTempo": 0,
+            "valueOrientation": 1
+          }
+        }
+      ]
+    },
+    {
+      "id": "q22",
+      "order": 22,
+      "tag": "认知与探索",
+      "title": "认知与探索",
+      "prompt": "如果你可以选择一种超能力，你最希望获得的是：",
+      "options": [
+        {
+          "id": "q22-0",
+          "label": "能够瞬间看透任何复杂事物的底层运作规律，剥离一切表象和谎言。",
+          "action": "能够瞬间看透任何复杂事物的底层运作规律，剥离一切表象和谎言。",
+          "weights": {
+            "cognitivePath": 1,
+            "driveSource": 1,
+            "cognitiveTempo": 1,
+            "valueOrientation": 0
+          }
+        },
+        {
+          "id": "q22-1",
+          "label": "能够感知万事万物之间的隐秘联系，在脑海中构建出完美运转的系统模型。",
+          "action": "能够感知万事万物之间的隐秘联系，在脑海中构建出完美运转的系统模型。",
+          "weights": {
+            "cognitivePath": -1,
+            "driveSource": 1,
+            "cognitiveTempo": 1,
+            "valueOrientation": 0
+          }
+        },
+        {
+          "id": "q22-2",
+          "label": "能够敏锐地捕捉到未来的趋势和机会，在所有人反应过来之前迅速采取行动。",
+          "action": "能够敏锐地捕捉到未来的趋势和机会，在所有人反应过来之前迅速采取行动。",
+          "weights": {
+            "cognitivePath": 0,
+            "driveSource": -1,
+            "cognitiveTempo": -1,
+            "valueOrientation": 1
+          }
+        },
+        {
+          "id": "q22-3",
+          "label": "能够深刻地共情他人的痛苦与喜悦，用直觉和艺术的力量治愈人心。",
+          "action": "能够深刻地共情他人的痛苦与喜悦，用直觉和艺术的力量治愈人心。",
+          "weights": {
+            "cognitivePath": 0,
+            "driveSource": -1,
+            "cognitiveTempo": 1,
+            "valueOrientation": -1
+          }
+        }
+      ]
+    },
+    {
+      "id": "q23",
+      "order": 23,
+      "tag": "认知与探索",
+      "title": "认知与探索",
+      "prompt": "当你陷入深度的自我怀疑和焦虑时，最有效的自我救赎方式是：",
+      "options": [
+        {
+          "id": "q23-0",
+          "label": "拿出一张白纸，用逻辑推演和概率计算来证明自己的焦虑在数学上是毫无意义的。",
+          "action": "拿出一张白纸，用逻辑推演和概率计算来证明自己的焦虑在数学上是毫无意义的。",
+          "weights": {
+            "cognitivePath": 1,
+            "driveSource": 1,
+            "cognitiveTempo": 0,
+            "valueOrientation": 1
+          }
+        },
+        {
+          "id": "q23-1",
+          "label": "走进大自然或进行深度的正念冥想，去感受生命作为一个庞大生态系统一部分的宁静与包容。",
+          "action": "走进大自然或进行深度的正念冥想，去感受生命作为一个庞大生态系统一部分的宁静与包容。",
+          "weights": {
+            "cognitivePath": -1,
+            "driveSource": -1,
+            "cognitiveTempo": 0,
+            "valueOrientation": -1
+          }
+        },
+        {
+          "id": "q23-2",
+          "label": "用极度的忙碌和高强度的行动来填满时间，在不断解决具体问题的过程中找回掌控感。",
+          "action": "用极度的忙碌和高强度的行动来填满时间，在不断解决具体问题的过程中找回掌控感。",
+          "weights": {
+            "cognitivePath": 1,
+            "driveSource": 0,
+            "cognitiveTempo": -1,
+            "valueOrientation": 1
+          }
+        },
+        {
+          "id": "q23-3",
+          "label": "将这种痛苦转化为创作的灵感，写一篇文章、画一幅画或进行一次极致的自我表达。",
+          "action": "将这种痛苦转化为创作的灵感，写一篇文章、画一幅画或进行一次极致的自我表达。",
+          "weights": {
+            "cognitivePath": 0,
+            "driveSource": -1,
+            "cognitiveTempo": 1,
+            "valueOrientation": -1
+          }
+        }
+      ]
+    },
+    {
+      "id": "q24",
+      "order": 24,
+      "tag": "认知与探索",
+      "title": "认知与探索",
+      "prompt": "你认为，一个真正“牛逼”的人，最终的归宿应该是：",
+      "options": [
+        {
+          "id": "q24-0",
+          "label": "留下了一套能够改变行业规则的底层方法论或颠覆性的技术产品，极大提升了人类的效率。",
+          "action": "留下了一套能够改变行业规则的底层方法论或颠覆性的技术产品，极大提升了人类的效率。",
+          "weights": {
+            "cognitivePath": 1,
+            "driveSource": 1,
+            "cognitiveTempo": 0,
+            "valueOrientation": 1
+          }
+        },
+        {
+          "id": "q24-1",
+          "label": "构建了一个宏大的思想体系或商业帝国，其制定的规则和生态在几代人之后依然在运转。",
+          "action": "构建了一个宏大的思想体系或商业帝国，其制定的规则和生态在几代人之后依然在运转。",
+          "weights": {
+            "cognitivePath": -1,
+            "driveSource": 1,
+            "cognitiveTempo": 1,
+            "valueOrientation": 0
+          }
+        },
+        {
+          "id": "q24-2",
+          "label": "始终保持着对世界的好奇心和野性，不断在全新的领域快速试错、打破边界，永远在路上。",
+          "action": "始终保持着对世界的好奇心和野性，不断在全新的领域快速试错、打破边界，永远在路上。",
+          "weights": {
+            "cognitivePath": 0,
+            "driveSource": -1,
+            "cognitiveTempo": -1,
+            "valueOrientation": 1
+          }
+        },
+        {
+          "id": "q24-3",
+          "label": "看透了世间的繁华与荒谬，最终回归到对人性最深沉的悲悯，用一种超越的智慧点醒世人。",
+          "action": "看透了世间的繁华与荒谬，最终回归到对人性最深沉的悲悯，用一种超越的智慧点醒世人。",
+          "weights": {
+            "cognitivePath": 0,
+            "driveSource": -1,
+            "cognitiveTempo": 1,
+            "valueOrientation": -1
+          }
+        }
+      ]
+    }
+  ],
+  "resultTypes": [
+    {
+      "id": "wall-breaker",
+      "code": "DLRP",
+      "label": "破壁人"
+    },
+    {
+      "id": "watchdog",
+      "code": "DLAP",
+      "label": "看门狗"
+    },
+    {
+      "id": "stress-tester",
+      "code": "DLRH",
+      "label": "杠精"
+    },
+    {
+      "id": "cyber-adjudicator",
+      "code": "DLAH",
+      "label": "赛博判官"
+    },
+    {
+      "id": "iteration-engine",
+      "code": "DNRP",
+      "label": "卷王"
+    },
+    {
+      "id": "fixed-bearing",
+      "code": "DNAP",
+      "label": "头铁"
+    },
+    {
+      "id": "signal-clarifier",
+      "code": "DNRH",
+      "label": "人间清醒"
+    },
+    {
+      "id": "specialist",
+      "code": "DNAH",
+      "label": "绝活哥"
+    },
+    {
+      "id": "imprint-system",
+      "code": "CLRH",
+      "label": "思想钢印"
+    },
+    {
+      "id": "rooted-systems-reader",
+      "code": "CNRP",
+      "label": "树人"
+    },
+    {
+      "id": "probability-navigator",
+      "code": "CNAP",
+      "label": "赌神"
+    },
+    {
+      "id": "noise-sweeper",
+      "code": "CNRH",
+      "label": "扫地僧"
+    }
+  ],
+  "scoring": {
+    "medians": {
+      "cognitivePath": 2,
+      "driveSource": 0,
+      "cognitiveTempo": 3,
+      "valueOrientation": 1
+    },
+    "scaleFactor": 8
+  }
+}

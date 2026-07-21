@@ -1,0 +1,104 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:nbti:schema:questionnaire:2",
+  "title": "NBTI Questionnaire Contract v2",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "kind", "id", "version", "contentDigest", "locale", "title", "questionCount", "safety", "dimensions", "questions", "resultTypes", "scoring"],
+  "properties": {
+    "$schema": { "type": "string", "minLength": 1 },
+    "schemaVersion": { "const": "2.0.0" },
+    "kind": { "const": "nbti.questionnaire" },
+    "id": { "$ref": "#/$defs/stableId" },
+    "version": { "type": "string", "pattern": "^[1-9][0-9]*$" },
+    "contentDigest": { "type": "string", "pattern": "^sha256:[0-9a-f]{64}$" },
+    "locale": { "type": "string", "pattern": "^[a-z]{2,3}(?:-[A-Z]{2})?$" },
+    "title": { "type": "string", "minLength": 1, "maxLength": 120 },
+    "questionCount": { "const": 24 },
+    "safety": { "$ref": "#/$defs/safety" },
+    "dimensions": {
+      "type": "array", "minItems": 4, "maxItems": 4,
+      "prefixItems": [
+        { "$ref": "#/$defs/cognitivePathDimension" },
+        { "$ref": "#/$defs/driveSourceDimension" },
+        { "$ref": "#/$defs/cognitiveTempoDimension" },
+        { "$ref": "#/$defs/valueOrientationDimension" }
+      ],
+      "items": false
+    },
+    "questions": { "type": "array", "minItems": 24, "maxItems": 24, "items": { "$ref": "#/$defs/question" } },
+    "resultTypes": { "type": "array", "minItems": 12, "maxItems": 12, "items": { "$ref": "#/$defs/resultType" } },
+    "scoring": { "$ref": "#/$defs/scoring" }
+  },
+  "$defs": {
+    "stableId": { "type": "string", "pattern": "^[a-z][a-z0-9-]{0,63}$" },
+    "safety": {
+      "type": "object", "additionalProperties": false,
+      "required": ["notDiagnosis", "notPersonalityAssessment", "notAbilityRating", "statement"],
+      "properties": {
+        "notDiagnosis": { "const": true }, "notPersonalityAssessment": { "const": true }, "notAbilityRating": { "const": true },
+        "statement": { "type": "string", "minLength": 1, "maxLength": 300 }
+      }
+    },
+    "endpoint": {
+      "type": "object", "additionalProperties": false, "required": ["id", "label"],
+      "properties": { "id": { "$ref": "#/$defs/stableId" }, "label": { "type": "string", "minLength": 1, "maxLength": 24 } }
+    },
+    "dimension": {
+      "type": "object", "additionalProperties": false, "required": ["id", "label", "left", "right", "explanation"],
+      "properties": {
+        "id": { "enum": ["cognitivePath", "driveSource", "cognitiveTempo", "valueOrientation"] }, "label": { "type": "string", "minLength": 1, "maxLength": 40 },
+        "left": { "$ref": "#/$defs/endpoint" }, "right": { "$ref": "#/$defs/endpoint" },
+        "explanation": { "type": "string", "minLength": 1, "maxLength": 300 }
+      }
+    },
+    "cognitivePathDimension": { "allOf": [{ "$ref": "#/$defs/dimension" }, { "type": "object", "properties": { "id": { "const": "cognitivePath" }, "left": { "type": "object", "properties": { "id": { "const": "construction" } } }, "right": { "type": "object", "properties": { "id": { "const": "deconstruction" } } } } }] },
+    "driveSourceDimension": { "allOf": [{ "$ref": "#/$defs/dimension" }, { "type": "object", "properties": { "id": { "const": "driveSource" }, "left": { "type": "object", "properties": { "id": { "const": "intuition" } } }, "right": { "type": "object", "properties": { "id": { "const": "logic" } } } } }] },
+    "cognitiveTempoDimension": { "allOf": [{ "$ref": "#/$defs/dimension" }, { "type": "object", "properties": { "id": { "const": "cognitiveTempo" }, "left": { "type": "object", "properties": { "id": { "const": "agility" } } }, "right": { "type": "object", "properties": { "id": { "const": "reflection" } } } } }] },
+    "valueOrientationDimension": { "allOf": [{ "$ref": "#/$defs/dimension" }, { "type": "object", "properties": { "id": { "const": "valueOrientation" }, "left": { "type": "object", "properties": { "id": { "const": "humanism" } } }, "right": { "type": "object", "properties": { "id": { "const": "pragmatism" } } } } }] },
+    "weights": {
+      "type": "object", "additionalProperties": false,
+      "required": ["cognitivePath", "driveSource", "cognitiveTempo", "valueOrientation"],
+      "properties": {
+        "cognitivePath": { "enum": [-1, 0, 1] }, "driveSource": { "enum": [-1, 0, 1] },
+        "cognitiveTempo": { "enum": [-1, 0, 1] }, "valueOrientation": { "enum": [-1, 0, 1] }
+      }
+    },
+    "option": {
+      "type": "object", "additionalProperties": false, "required": ["id", "label", "action", "weights"],
+      "properties": {
+        "id": { "$ref": "#/$defs/stableId" }, "label": { "type": "string", "minLength": 1, "maxLength": 300 },
+        "action": { "type": "string", "minLength": 1, "maxLength": 300 }, "weights": { "$ref": "#/$defs/weights" }
+      }
+    },
+    "question": {
+      "type": "object", "additionalProperties": false, "required": ["id", "order", "tag", "title", "prompt", "options"],
+      "properties": {
+        "id": { "$ref": "#/$defs/stableId" }, "order": { "type": "integer", "minimum": 1, "maximum": 24 },
+        "tag": { "type": "string", "minLength": 1, "maxLength": 40 }, "title": { "type": "string", "minLength": 1, "maxLength": 80 },
+        "prompt": { "type": "string", "minLength": 1, "maxLength": 500 },
+        "options": { "type": "array", "minItems": 4, "maxItems": 4, "items": { "$ref": "#/$defs/option" } }
+      }
+    },
+    "resultType": {
+      "type": "object", "additionalProperties": false, "required": ["id", "code", "label"],
+      "properties": {
+        "id": { "enum": ["wall-breaker", "watchdog", "stress-tester", "cyber-adjudicator", "iteration-engine", "fixed-bearing", "signal-clarifier", "specialist", "imprint-system", "rooted-systems-reader", "probability-navigator", "noise-sweeper"] },
+        "code": { "enum": ["DLRP", "DLAP", "DLRH", "DLAH", "DNRP", "DNAP", "DNRH", "DNAH", "CLRH", "CNRP", "CNAP", "CNRH"] },
+        "label": { "type": "string", "minLength": 1, "maxLength": 40 }, "shortLabel": { "type": "string", "minLength": 1, "maxLength": 20 }
+      }
+    },
+    "medians": {
+      "type": "object", "additionalProperties": false,
+      "required": ["cognitivePath", "driveSource", "cognitiveTempo", "valueOrientation"],
+      "properties": {
+        "cognitivePath": { "type": "integer" }, "driveSource": { "type": "integer" },
+        "cognitiveTempo": { "type": "integer" }, "valueOrientation": { "type": "integer" }
+      }
+    },
+    "scoring": {
+      "type": "object", "additionalProperties": false, "required": ["medians", "scaleFactor"],
+      "properties": { "medians": { "$ref": "#/$defs/medians" }, "scaleFactor": { "type": "number", "exclusiveMinimum": 0 } }
+    }
+  }
+}

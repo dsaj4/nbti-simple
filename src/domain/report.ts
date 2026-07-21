@@ -7,7 +7,7 @@ import {
 } from "../content/series";
 import { identityMap } from "../content/identities";
 import { reportRoleForIdentity } from "../content/reportRoles";
-import { allDimensionKeys, normalizeScores, scoreAnswers, sumWeights } from "./scoring";
+import { allDimensionKeys, scoreAnswers } from "./scoring";
 
 export const safetyNote =
   "NBTI 是趣味性的思维风格表达，不是心理诊断，也不评定人格或能力。结果只描述你在这组情境中的判断方式。";
@@ -38,6 +38,8 @@ export function buildReportViewModel(
       value,
       positionLabel: getPositionLabel(value),
       explanation: dimensionExplanations[key],
+      clarity: score.preferenceClarity[key],
+      clarityLabel: clarityLabel(score.preferenceClarity[key]),
     };
   });
 
@@ -63,6 +65,7 @@ export function buildReportViewModel(
       scene: role.scene,
     },
     dimensions,
+    hasBoundaryState: dimensions.some((dimension) => dimension.clarity === "borderline"),
     actions: role.actions.length > 0 ? role.actions : identity.actions,
     evidence: score.evidence.map((item) => ({
       questionTitle: item.questionTitle,
@@ -72,6 +75,12 @@ export function buildReportViewModel(
     safetyNote,
     sampleLimitation,
   };
+}
+
+function clarityLabel(clarity: "very-clear" | "clear" | "borderline"): string {
+  if (clarity === "very-clear") return "非常清晰";
+  if (clarity === "clear") return "清晰";
+  return "边界状态";
 }
 
 export function getPositionLabel(value: number): string {
