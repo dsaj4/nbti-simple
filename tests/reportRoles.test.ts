@@ -22,12 +22,12 @@ describe("report role presentation layer", () => {
     );
   });
 
-  it("makes all fifteen network roles reachable without changing scoring IDs", () => {
+  it("makes all twelve network roles reachable without changing scoring IDs", () => {
     const cases: Array<[string, DimensionKey | null, number, string]> = [
       ["deconstructor", "momentum", 1, "stress-tester"],
-      ["deconstructor", "momentum", -1, "human-computer"],
+      ["deconstructor", "momentum", -1, "stress-tester"],
       ["connector", "calibration", -1, "cyber-adjudicator"],
-      ["connector", "calibration", 1, "system-maximalist"],
+      ["connector", "calibration", 1, "cyber-adjudicator"],
       ["calibrator", "scope", -1, "watchdog"],
       ["calibrator", "scope", 1, "noise-sweeper"],
       ["context-reader", "organization", -1, "wall-breaker"],
@@ -38,7 +38,7 @@ describe("report role presentation layer", () => {
       ["explorer", "scope", 1, "iteration-engine"],
       ["overlooker", null, 0, "rooted-systems-reader"],
       ["present", "organization", -1, "specialist"],
-      ["present", "organization", 1, "momentum-pump"],
+      ["present", "organization", 1, "specialist"],
     ];
 
     const selected = new Set(
@@ -56,9 +56,8 @@ describe("report role presentation layer", () => {
     );
   });
 
-  it("reaches every strong role through a valid questionnaire answer sequence", () => {
+  it("reaches every remaining strong role through a valid questionnaire answer sequence", () => {
     const witnesses: Record<string, number[]> = {
-      "human-computer": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
       "stress-tester": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
       watchdog: [0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0],
       "noise-sweeper": [0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 3],
@@ -70,9 +69,7 @@ describe("report role presentation layer", () => {
       "fixed-bearing": [0, 0, 0, 0, 0, 0, 1, 1, 1, 3, 3, 0],
       "wall-breaker": [0, 0, 0, 0, 1, 0, 1, 1, 1, 1, 3, 1],
       "signal-clarifier": [0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 3, 1],
-      "momentum-pump": [0, 0, 0, 0, 0, 1, 3, 1, 3, 1, 1, 3],
       "cyber-adjudicator": [0, 0, 1, 0, 0, 1, 1, 0, 1, 1, 1, 0],
-      "system-maximalist": [0, 0, 1, 0, 0, 1, 1, 1, 1, 1, 3, 1],
     };
 
     for (const [roleId, answers] of Object.entries(witnesses)) {
@@ -85,7 +82,7 @@ describe("report role presentation layer", () => {
     );
   });
 
-  it("only points at files for the fourteen generated roles", () => {
+  it("only points at files for the eleven generated roles", () => {
     const rolesWithAssets = reportRoleIds.filter(
       (roleId) => Boolean(reportRoleMap[roleId].assetSrc),
     );
@@ -99,9 +96,7 @@ describe("report role presentation layer", () => {
       "fixed-bearing",
       "signal-clarifier",
       "specialist",
-      "system-maximalist",
       "imprint-system",
-      "momentum-pump",
       "rooted-systems-reader",
       "probability-navigator",
       "noise-sweeper",

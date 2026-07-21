@@ -60,7 +60,7 @@ describe("App flow", () => {
       fireEvent.click(nextButton);
     }
 
-    expect(screen.getByRole("heading", { name: /破壁人|看门狗|杠精|赛博判官|卷王|头铁|人间清醒|绝活哥|人型电脑|堆料狂魔|思想钢印|打气筒|树人|赌神|扫地僧|多路者/ })).toBeVisible();
+    expect(screen.getByRole("heading", { name: /破壁人|看门狗|杠精|赛博判官|卷王|头铁|人间清醒|绝活哥|思想钢印|树人|赌神|扫地僧|多路者/ })).toBeVisible();
     expect(screen.getByRole("button", { name: "重新测试" })).toBeVisible();
   });
 
